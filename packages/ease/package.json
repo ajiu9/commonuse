@@ -1,0 +1,23 @@
+{
+  "name": "@ajiu9/ease",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
+  "license": "MIT",
+  "homepage": "https://github.com/ajiu9/commonuse",
+  "keywords": [
+    "javaScript",
+    "util"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "release": "bumpp -r && pnpm -r publish --access public"
+  },
+  "devDependencies": {
+    "@ajiu9/eslint-config": "^1.0.2",
+    "eslint": "^8.46.0",
+    "typescript": "^5.1.6"
+  }
+}
