@@ -12,8 +12,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "release": "bumpp -r && pnpm -r publish --access public"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.2",

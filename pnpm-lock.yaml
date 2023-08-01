@@ -1,16 +1,58 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@ajiu9/eslint-config': ^1.0.2
-  bumpp: ^9.1.1
-  eslint: ^8.46.0
-  typescript: ^5.1.6
+importers:
 
-devDependencies:
-  '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
-  bumpp: 9.1.1
-  eslint: 8.46.0
-  typescript: 5.1.6
+  .:
+    specifiers:
+      '@ajiu9/eslint-config': ^1.0.2
+      bumpp: ^9.1.1
+      eslint: ^8.46.0
+      typescript: ^5.1.6
+    devDependencies:
+      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
+      bumpp: 9.1.1
+      eslint: 8.46.0
+      typescript: 5.1.6
+
+  packages/animation:
+    specifiers:
+      '@ajiu9/eslint-config': ^1.0.2
+      eslint: ^8.46.0
+      typescript: ^5.1.6
+    devDependencies:
+      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
+      eslint: 8.46.0
+      typescript: 5.1.6
+
+  packages/commonuse:
+    specifiers:
+      '@ajiu9/eslint-config': ^1.0.2
+      eslint: ^8.46.0
+      typescript: ^5.1.6
+    devDependencies:
+      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
+      eslint: 8.46.0
+      typescript: 5.1.6
+
+  packages/ease:
+    specifiers:
+      '@ajiu9/eslint-config': ^1.0.2
+      eslint: ^8.46.0
+      typescript: ^5.1.6
+    devDependencies:
+      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
+      eslint: 8.46.0
+      typescript: 5.1.6
+
+  packages/gesture:
+    specifiers:
+      '@ajiu9/eslint-config': ^1.0.2
+      eslint: ^8.46.0
+      typescript: ^5.1.6
+    devDependencies:
+      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
+      eslint: 8.46.0
+      typescript: 5.1.6
 
 packages:
 

@@ -1,8 +1,0 @@
-# Dependebcy directories
-node_modules/
-
-# IDE
-.idea
-
-# Runtime data
-pnpm-lock.yaml
