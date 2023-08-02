@@ -15,44 +15,23 @@ importers:
       typescript: 5.1.6
 
   packages/animation:
-    specifiers:
-      '@ajiu9/eslint-config': ^1.0.2
-      eslint: ^8.46.0
-      typescript: ^5.1.6
-    devDependencies:
-      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
-      eslint: 8.46.0
-      typescript: 5.1.6
+    specifiers: {}
 
   packages/commonuse:
     specifiers:
-      '@ajiu9/eslint-config': ^1.0.2
-      eslint: ^8.46.0
-      typescript: ^5.1.6
+      '@ajiu9/animation': workspace:*
+      '@ajiu9/ease': workspace:*
+      '@ajiu9/gesture': workspace:*
     devDependencies:
-      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
-      eslint: 8.46.0
-      typescript: 5.1.6
+      '@ajiu9/animation': link:../animation
+      '@ajiu9/ease': link:../ease
+      '@ajiu9/gesture': link:../gesture
 
   packages/ease:
-    specifiers:
-      '@ajiu9/eslint-config': ^1.0.2
-      eslint: ^8.46.0
-      typescript: ^5.1.6
-    devDependencies:
-      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
-      eslint: 8.46.0
-      typescript: 5.1.6
+    specifiers: {}
 
   packages/gesture:
-    specifiers:
-      '@ajiu9/eslint-config': ^1.0.2
-      eslint: ^8.46.0
-      typescript: ^5.1.6
-    devDependencies:
-      '@ajiu9/eslint-config': 1.0.2_7haavtekmro7ptbnqmctjaodju
-      eslint: 8.46.0
-      typescript: 5.1.6
+    specifiers: {}
 
 packages:
 
@@ -762,7 +741,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
     dev: true
 
   /debug/4.3.4:
@@ -945,7 +924,7 @@ packages:
     dependencies:
       debug: 3.2.7
       is-core-module: 2.12.1
-      resolve: 1.22.2
+      resolve: 1.22.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2053,6 +2032,10 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: true
+
+  /ms/2.1.3:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
   /natural-compare-lite/1.4.0:

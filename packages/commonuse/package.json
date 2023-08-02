@@ -5,6 +5,11 @@
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
   "license": "MIT",
   "homepage": "https://github.com/ajiu9/commonuse",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajiu9/commonuse",
+    "directory": "packages/commonuse"
+  },
   "keywords": [
     "javaScript",
     "util"
@@ -13,15 +18,9 @@
   "files": [
     "index.js"
   ],
-  "scripts": {
-    "lint": "eslint ."
-  },
   "devDependencies": {
     "@ajiu9/animation": "workspace:*",
     "@ajiu9/ease": "workspace:*",
-    "@ajiu9/eslint-config": "^1.0.2",
-    "@ajiu9/gesture": "workspace:*",
-    "eslint": "^8.46.0",
-    "typescript": "^5.1.6"
+    "@ajiu9/gesture": "workspace:*"
   }
 }
