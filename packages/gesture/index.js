@@ -233,5 +233,6 @@ export class Dispatcher {
 }
 
 export function enableGesture(element) {
+  // eslint-disable-next-line no-new
   new Listener(element, new Recognizer(new Dispatcher(element)))
 }

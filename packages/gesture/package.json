@@ -10,6 +10,9 @@
     "util"
   ],
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "lint": "eslint ."
   },
