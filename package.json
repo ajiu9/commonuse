@@ -1,5 +1,6 @@
 {
   "name": "@ajiu9/common-use-monorepo",
+  "type": "module",
   "version": "1.0.3-beta.3",
   "private": true,
   "description": "A library of commonly used utility functions",
@@ -10,14 +11,22 @@
     "util"
   ],
   "main": "index.js",
+  "engines": {
+    "node": ">=16.11.0"
+  },
   "scripts": {
+    "build": "node scripts/build.js animation -f && echo 1",
     "lint": "eslint .",
     "release": "bumpp -r && pnpm -r publish --access public"
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.2",
+    "@rollup/plugin-alias": "^5.0.0",
     "bumpp": "^9.1.1",
     "eslint": "^8.46.0",
+    "execa": "^7.2.0",
+    "minimist": "^1.2.8",
+    "rollup": "^3.27.0",
     "typescript": "^5.1.6"
   }
 }
