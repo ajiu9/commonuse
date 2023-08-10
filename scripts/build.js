@@ -53,11 +53,14 @@ async function build(target) {
   if (existsSync(`${pkgDir}/dist`))
     fs.rm(`${pkgDir}/dist`, { recursive: true })
 
+  const env = (pkg.buildOptions && pkg.buildOptions.env) || 'production'
+
   await execa('rollup',
     [
       '-c',
       '--environment',
       [
+        `NODE_ENV:${env}`,
         `COMMIT:${commit}`,
         `TARGET:${target}`,
       ]
