@@ -10,11 +10,11 @@ import { targets as allTargets } from './utils.js'
 
 const require = createRequire(import.meta.url)
 const args = minimist(process.argv.slice(2))
-const targets = args._
-console.log(targets)
+// const targets = args._
+// console.log(targets)
 
 const commit = execaSync('git', ['rev-parse', 'HEAD']).stdout.slice(0, 7)
-console.log(commit)
+// console.log(commit)
 // console.log('process.argv', process.argv, process.argv.slice(2))
 
 run()
@@ -47,7 +47,6 @@ async function build(target) {
   const pkgDir = path.resolve(`packages/${target}`)
   const pkg = require(`${pkgDir}/package.json`)
 
-  console.log('pkg', pkg.name)
   // ignore private package
   if (pkg.private) return
   // remove dist
