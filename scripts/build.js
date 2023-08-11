@@ -10,6 +10,7 @@ import { targets as allTargets } from './utils.js'
 
 const require = createRequire(import.meta.url)
 const args = minimist(process.argv.slice(2))
+const sourceMap = args.sourcemap || args.s
 // const targets = args._
 // console.log(targets)
 
@@ -63,6 +64,7 @@ async function build(target) {
         `NODE_ENV:${env}`,
         `COMMIT:${commit}`,
         `TARGET:${target}`,
+        sourceMap ? 'SOURCE_MAP:true' : '',
       ]
         .filter(Boolean)
         .join(','),

@@ -15,8 +15,10 @@
     "util"
   ],
   "main": "index.js",
+  "module": "dist/commonuse.esm-bundler.js",
   "files": [
-    "index.js"
+    "index.js",
+    "dist"
   ],
   "devDependencies": {
     "@ajiu9/animation": "workspace:*",

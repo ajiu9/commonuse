@@ -15,7 +15,9 @@
     "util"
   ],
   "main": "index.js",
+  "module": "dist/animation.esm-bundler.js",
   "files": [
-    "index.js"
+    "index.js",
+    "dist"
   ]
 }
