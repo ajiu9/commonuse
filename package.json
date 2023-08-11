@@ -1,7 +1,7 @@
 {
   "name": "@ajiu9/common-use-monorepo",
   "type": "module",
-  "version": "1.0.3-beta.3",
+  "version": "1.0.3-beta.4",
   "private": true,
   "description": "A library of commonly used utility functions",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
