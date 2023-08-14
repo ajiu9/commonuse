@@ -1,3 +1,3 @@
 'use strict'
 
-module.exports = require('./dist/animation.cjs')
+module.exports = require('./dist/animation.cjs.js')
