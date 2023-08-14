@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 import terser from '@rollup/plugin-terser'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 const require = createRequire(import.meta.url)
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -80,9 +81,33 @@ function createConfig(format, output, plugins = []) {
     input: resolve(entryFile),
     // Global and Browser ESM builds inline everything so that they can be
     // used alone.
+    external: resolveExternal(),
     output,
+    plugins: [
+      // ...resolveNodePlugins(),
+      nodeResolve(),
+      ...plugins
+    ]
   }
+
+  function resolveExternal() {
+    return {
+      ...Object.keys(pkg.dependencies || {}),
+    }
+  }
+  
+  // function resolveNodePlugins() {
+  //   const nodePlugins = []
+  //   if (pkg.name === 'commonuse' || (format === 'cjs' && Object.keys(pkg.devDependencies || {}).length)) {
+  //     nodePlugins.push(nodeResolve())
+  //   }
+  //   return nodePlugins
+  // }
+  
 }
+
+
+
 
 function createProductionConfig(format) {
   return createConfig(format, {

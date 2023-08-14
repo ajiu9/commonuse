@@ -22,6 +22,7 @@
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.3",
     "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
     "bumpp": "^9.1.1",
     "eslint": "^8.46.0",
