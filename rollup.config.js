@@ -2,8 +2,11 @@ import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
-import terser from '@rollup/plugin-terser'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import esbuild from 'rollup-plugin-esbuild'
+import terser from '@rollup/plugin-terser'
+
+// import polyfillNode from 'rollup-plugin-polyfill-node'
 
 const require = createRequire(import.meta.url)
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -82,32 +85,33 @@ function createConfig(format, output, plugins = []) {
     // Global and Browser ESM builds inline everything so that they can be
     // used alone.
     external: resolveExternal(),
-    output,
     plugins: [
-      // ...resolveNodePlugins(),
+      esbuild({
+        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+        sourceMap: output.sourcemap,
+        minify: false,
+        target: isNodeBuild ? 'es2019' : 'es2015',
+        // define: resolveDefine()
+      }),
       nodeResolve(),
-      ...plugins
-    ]
+      // polyfillNode(),
+      ...plugins,
+    ],
+    output,
+    // treeshake: {
+    //   moduleSideEffects: false,
+    // },
   }
 
   function resolveExternal() {
     return {
       ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
+      // for commonuse
+      ...['path', 'url', 'stream'],
     }
   }
-  
-  // function resolveNodePlugins() {
-  //   const nodePlugins = []
-  //   if (pkg.name === 'commonuse' || (format === 'cjs' && Object.keys(pkg.devDependencies || {}).length)) {
-  //     nodePlugins.push(nodeResolve())
-  //   }
-  //   return nodePlugins
-  // }
-  
 }
-
-
-
 
 function createProductionConfig(format) {
   return createConfig(format, {

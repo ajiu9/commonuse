@@ -24,5 +24,13 @@
     "@ajiu9/animation": "workspace:*",
     "@ajiu9/ease": "workspace:*",
     "@ajiu9/gesture": "workspace:*"
+  },
+  "buildOptions": {
+    "name": "Gesture",
+    "formats": [
+      "esm-bundler",
+      "cjs",
+      "global"
+    ]
   }
 }

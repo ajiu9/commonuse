@@ -19,5 +19,13 @@
   "files": [
     "index.js",
     "dist"
-  ]
+  ],
+  "buildOptions": {
+    "name": "Gesture",
+    "formats": [
+      "esm-bundler",
+      "cjs",
+      "global"
+    ]
+  }
 }

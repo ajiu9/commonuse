@@ -19,5 +19,13 @@
   "files": [
     "index.js",
     "dist"
-  ]
+  ],
+  "buildOptions": {
+    "name": "Ease",
+    "formats": [
+      "esm-bundler",
+      "cjs",
+      "global"
+    ]
+  }
 }

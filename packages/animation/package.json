@@ -19,5 +19,13 @@
   "files": [
     "index.js",
     "dist"
-  ]
+  ],
+  "buildOptions": {
+    "name": "Animation",
+    "formats": [
+      "esm-bundler",
+      "cjs",
+      "global"
+    ]
+  }
 }
