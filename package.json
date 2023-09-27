@@ -1,7 +1,7 @@
 {
   "name": "@ajiu9/common-use-monorepo",
   "type": "module",
-  "version": "1.0.3-beta.8",
+  "version": "1.0.3-beta.9",
   "private": true,
   "description": "A library of commonly used utility functions",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.3",
     "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
     "bumpp": "^9.1.1",
