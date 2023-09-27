@@ -5,6 +5,7 @@ const START_TIME = Symbol('add-time')
 const PAUSE_START = Symbol('pause-start')
 const PAUSE_TIME = Symbol('pause_time')
 export class TimeLine {
+  state: string
   constructor() {
     this.state = 'initial'
     this[ANIMATIONS] = new Set()
