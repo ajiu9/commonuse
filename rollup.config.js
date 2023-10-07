@@ -127,15 +127,15 @@ function createMinifiedConfig(format) {
       file: outputConfigs[format].file.replace(/\.js$/, '.js'),
       format: outputConfigs[format].format,
     },
-    [
-      terser({
-        module: format.startsWith('esm'),
-        compress: {
-          ecma: 2015,
-          pure_getters: true,
-        },
-        safari10: true,
-      }),
-    ],
+    // [
+    //   terser({
+    //     module: format.startsWith('esm'),
+    //     compress: {
+    //       ecma: 2015,
+    //       pure_getters: true,
+    //     },
+    //     safari10: true,
+    //   }),
+    // ],
   )
 }

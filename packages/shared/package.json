@@ -1,5 +1,5 @@
 {
-  "name": "@ajiu9/gesture",
+  "name": "@ajiu9/shared",
   "version": "1.0.3-beta.10",
   "description": "",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
@@ -8,23 +8,26 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ajiu9/commonuse",
-    "directory": "packages/gesture"
+    "directory": "packages/animation"
   },
   "keywords": [
     "javaScript",
     "util"
   ],
+
   "main": "index.js",
+  "module": "dist/shared.esm-bundler.js",
+  "types": "dist/shared.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
   "buildOptions": {
-    "name": "Gesture",
+    "name": "shared",
     "formats": [
       "esm-bundler",
-      "cjs",
-      "global"
+      "cjs"
     ]
   }
+
 }

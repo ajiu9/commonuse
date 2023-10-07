@@ -1,5 +1,5 @@
 export class Listener {
-  constructor(element, recognizer) {
+  constructor(element: Element, recognizer) {
     let isListeningMouse = false
 
     const contexts = new Map()
