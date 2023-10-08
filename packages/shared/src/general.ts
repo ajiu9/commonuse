@@ -1,8 +1,5 @@
-export const EMPTY_OBJ: { readonly [key: string]: any } = __DEV__
-  ? Object.freeze({})
-  : {}
-export const EMPTY_ARR = __DEV__ ? Object.freeze([]) : []
-
+export const EMPTY_OBJ: { readonly [key: string]: any } = {}
+export const EMPTY_ARR = []
 export const NOOP = () => {}
 
 /**
@@ -12,8 +9,6 @@ export const NO = () => false
 
 const onRE = /^on[^a-z]/
 export const isOn = (key: string) => onRE.test(key)
-
-export const isModelListener = (key: string) => key.startsWith('onUpdate:')
 
 export const extend = Object.assign
 
@@ -28,6 +23,10 @@ export const hasOwn = (
   val: object,
   key: string | symbol,
 ): key is keyof typeof val => hasOwnProperty.call(val, key)
+
+export const objectToString = Object.prototype.toString
+export const toTypeString = (value: unknown): string =>
+  objectToString.call(value)
 
 export const isArray = Array.isArray
 export const isMap = (val: unknown): val is Map<any, any> =>
@@ -53,10 +52,6 @@ export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
     && isFunction((val as any).catch)
   )
 }
-
-export const objectToString = Object.prototype.toString
-export const toTypeString = (value: unknown): string =>
-  objectToString.call(value)
 
 export const toRawType = (value: unknown): string => {
   // extract "RawType" from strings like "[object RawType]"
@@ -134,7 +129,7 @@ export const def = (obj: object, key: string | symbol, value: any) => {
  */
 export const looseToNumber = (val: any): any => {
   const n = Number.parseFloat(val)
-  return isNaN(n) ? val : n
+  return Number.isNaN(n) ? val : n
 }
 
 /**
@@ -143,7 +138,7 @@ export const looseToNumber = (val: any): any => {
  */
 export const toNumber = (val: any): any => {
   const n = isString(val) ? Number(val) : Number.NaN
-  return isNaN(n) ? val : n
+  return Number.isNaN(n) ? val : n
 }
 
 let _globalThis: any
