@@ -21,6 +21,14 @@ const pkg = require(resolve('package.json'))
 const packageOptions = pkg.buildOptions || {}
 const name = packageOptions.filename || path.basename(packageDir)
 
+const externals = [
+  '@ajiu9/shared',
+  '@ajiu9/commonuse',
+  '@ajiu9/animation',
+  '@ajiu9/ease',
+  '@ajiu9/gesture',
+]
+
 const outputConfigs = {
   'esm-bundler': {
     file: resolve(`dist/${name}.esm-bundler.js`),
@@ -98,6 +106,9 @@ function createConfig(format, output, plugins = []) {
       ...plugins,
     ],
     output,
+    external: {
+      ...externals
+    }
     // treeshake: {
     //   moduleSideEffects: false,
     // },

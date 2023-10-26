@@ -19,6 +19,7 @@
     "index.js",
     "dist"
   ],
+  "sideEffects": false,
   "buildOptions": {
     "name": "Gesture",
     "formats": [

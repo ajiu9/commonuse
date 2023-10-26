@@ -15,6 +15,7 @@
     "util"
   ],
   "main": "index.js",
+  "sideEffects": false,
   "module": "dist/animation.esm-bundler.js",
   "files": [
     "index.js",
