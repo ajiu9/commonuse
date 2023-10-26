@@ -14,12 +14,12 @@
     "javaScript",
     "util"
   ],
+  "sideEffects": false,
   "main": "index.js",
   "files": [
     "index.js",
     "dist"
   ],
-  "sideEffects": false,
   "buildOptions": {
     "name": "Gesture",
     "formats": [

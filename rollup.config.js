@@ -4,7 +4,7 @@ import path from 'node:path'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import esbuild from 'rollup-plugin-esbuild'
-import terser from '@rollup/plugin-terser'
+import commonjs from '@rollup/plugin-commonjs'
 
 // import polyfillNode from 'rollup-plugin-polyfill-node'
 
@@ -20,14 +20,6 @@ const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve('package.json'))
 const packageOptions = pkg.buildOptions || {}
 const name = packageOptions.filename || path.basename(packageDir)
-
-const externals = [
-  '@ajiu9/shared',
-  '@ajiu9/commonuse',
-  '@ajiu9/animation',
-  '@ajiu9/ease',
-  '@ajiu9/gesture',
-]
 
 const outputConfigs = {
   'esm-bundler': {
@@ -94,6 +86,7 @@ function createConfig(format, output, plugins = []) {
     // used alone.
     external: resolveExternal(),
     plugins: [
+      commonjs(),
       esbuild({
         tsconfig: path.resolve(__dirname, 'tsconfig.json'),
         sourceMap: output.sourcemap,
@@ -106,9 +99,6 @@ function createConfig(format, output, plugins = []) {
       ...plugins,
     ],
     output,
-    external: {
-      ...externals
-    }
     // treeshake: {
     //   moduleSideEffects: false,
     // },

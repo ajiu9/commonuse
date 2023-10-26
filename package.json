@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "release": "bumpp -r && pnpm -r publish --access public"
   },
   "devDependencies": {

@@ -14,13 +14,13 @@
     "javaScript",
     "util"
   ],
+  "sideEffects": false,
   "main": "index.js",
   "module": "dist/ease.esm-bundler.js",
   "files": [
     "index.js",
     "dist"
   ],
-  "sideEffects": false,
   "buildOptions": {
     "name": "Ease",
     "formats": [
