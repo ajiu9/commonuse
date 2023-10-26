@@ -105,12 +105,12 @@ function createConfig(format, output, plugins = []) {
   }
 
   function resolveExternal() {
-    return {
+    return [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
       // for commonuse
-      ...['path', 'url', 'stream'],
-    }
+      // ...['path', 'url', 'stream'],
+    ]
   }
 }
 

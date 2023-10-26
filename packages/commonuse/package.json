@@ -22,9 +22,6 @@
     "dist"
   ],
   "dependencies": {
-    "@ajiu9/animation": "workspace:*",
-    "@ajiu9/ease": "workspace:*",
-    "@ajiu9/gesture": "workspace:*",
     "@ajiu9/shared": "workspace:*"
   },
   "buildOptions": {
