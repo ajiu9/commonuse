@@ -99,9 +99,9 @@ function createConfig(format, output, plugins = []) {
       ...plugins,
     ],
     output,
-    // treeshake: {
-    //   moduleSideEffects: false,
-    // },
+    treeshake: {
+      moduleSideEffects: false,
+    },
   }
 
   function resolveExternal() {

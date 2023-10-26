@@ -3,7 +3,7 @@ import { createRequire } from 'node:module'
 
 const require = createRequire(import.meta.url)
 
-export const targets = fs.readdirSync('packages').filter((f) => {
+const allTargets = fs.readdirSync('packages').filter((f) => {
   if (!fs.statSync(`packages/${f}`).isDirectory())
     return false
 
@@ -13,3 +13,11 @@ export const targets = fs.readdirSync('packages').filter((f) => {
 
   return true
 })
+
+export const targets = (() => {
+  let ret = allTargets.slice()
+  const name = 'commonuse'
+  const index = ret.findIndex(item => item === name)
+  ret.splice(index, 1)
+  return ['shared']
+})()
