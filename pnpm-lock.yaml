@@ -5,8 +5,9 @@ importers:
   .:
     specifiers:
       '@ajiu9/eslint-config': ^1.0.3
-      '@rollup/plugin-alias': ^5.0.0
+      '@rollup/plugin-alias': ^5.0.1
       '@rollup/plugin-commonjs': ^25.0.4
+      '@rollup/plugin-json': ^6.0.1
       '@rollup/plugin-node-resolve': ^15.1.0
       '@rollup/plugin-terser': ^0.4.3
       bumpp: ^9.1.1
@@ -22,6 +23,7 @@ importers:
       '@ajiu9/eslint-config': 1.0.3_i3vkbg2fztj7jno7sh3heeojya
       '@rollup/plugin-alias': 5.0.1_rollup@4.1.4
       '@rollup/plugin-commonjs': 25.0.7_rollup@4.1.4
+      '@rollup/plugin-json': 6.0.1_rollup@4.1.4
       '@rollup/plugin-node-resolve': 15.2.3_rollup@4.1.4
       '@rollup/plugin-terser': 0.4.4_rollup@4.1.4
       bumpp: 9.2.0
@@ -541,6 +543,19 @@ packages:
       '@rollup/pluginutils': 5.0.5_rollup@4.1.4
       estree-walker: 2.0.2
       magic-string: 0.30.5
+      rollup: 4.1.4
+    dev: true
+
+  /@rollup/plugin-json/6.0.1_rollup@4.1.4:
+    resolution: {integrity: sha512-RgVfl5hWMkxN1h/uZj8FVESvPuBJ/uf6ly6GTj0GONnkfoBN5KC0MSz+PN2OLDgYXMhtG0mWpTrkiOjoxAIevw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.5_rollup@4.1.4
       rollup: 4.1.4
     dev: true
 

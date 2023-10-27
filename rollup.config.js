@@ -4,7 +4,11 @@ import path from 'node:path'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
+// import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import alias from '@rollup/plugin-alias'
+import { entries } from './scripts/aliases.js'
+console.log('alias', alias)
 
 // import polyfillNode from 'rollup-plugin-polyfill-node'
 
@@ -84,9 +88,15 @@ function createConfig(format, output, plugins = []) {
     input: resolve(entryFile),
     // Global and Browser ESM builds inline everything so that they can be
     // used alone.
-    external: resolveExternal(),
+    // external: resolveExternal(),
     plugins: [
-      commonjs(),
+      json({
+        namedExports: false
+      }),
+      alias({
+        entries
+      }),
+      // commonjs(),
       esbuild({
         tsconfig: path.resolve(__dirname, 'tsconfig.json'),
         sourceMap: output.sourcemap,
