@@ -1,9 +1,10 @@
 const TICK = Symbol('tick')
 const TICK_HANDLER = Symbol('tick-handler')
 const ANIMATIONS = Symbol('animations')
-const START_TIME = Symbol('add-time')
+const START_TIME = Symbol('start-time')
 const PAUSE_START = Symbol('pause-start')
-const PAUSE_TIME = Symbol('pause_time')
+const PAUSE_TIME = Symbol('pause-time')
+
 export class TimeLine {
   state: string
   constructor() {
@@ -13,8 +14,7 @@ export class TimeLine {
   }
 
   start() {
-    if (this.state !== 'initial')
-      return
+    if (this.state !== 'initial') return
     this.state = 'started'
     const startTime = Date.now()
     this[PAUSE_TIME] = 0
@@ -22,10 +22,11 @@ export class TimeLine {
       const now = Date.now()
       for (const animation of this[ANIMATIONS]) {
         let t
-        // 如果传入时间小于当前时间
-        // t 赋值当前
+        // If the start time is less than current time
+        // Set t to current time minus pause time minus delay
         if (this[START_TIME].get(animation) < startTime)
           t = now - startTime - this[PAUSE_TIME] - animation.delay
+        // Otherwise, set t to current time minus start time minus pause time minus delay
         else
           t = now - this[START_TIME].get(animation) - this[PAUSE_TIME] - animation.delay
 
@@ -40,25 +41,22 @@ export class TimeLine {
     this[TICK]()
   }
 
-  add(animation, startTime) {
-    if (arguments.length < 2)
-      startTime = Date.now()
+  add(animation: Animation, startTime?: number) {
+    if (arguments.length < 2) startTime = Date.now()
 
     this[ANIMATIONS].add(animation)
     this[START_TIME].set(animation, startTime)
   }
 
   pause() {
-    if (this.state !== 'started')
-      return
+    if (this.state !== 'started') return
     this.state = 'paused'
     this[PAUSE_START] = Date.now()
     cancelAnimationFrame(this[TICK_HANDLER])
   }
 
   resume() {
-    if (this.state !== 'paused')
-      return
+    if (this.state !== 'paused') return
     this.state = 'started'
     this[PAUSE_TIME] += Date.now() - this[PAUSE_START]
     this[TICK]()
@@ -76,18 +74,9 @@ export class TimeLine {
 }
 
 export class Animation {
-  constructor(object, property, startValue, endValue, duration, delay, timingFunction, template) {
-    this.object = object
-    this.property = property
-    this.startValue = startValue
-    this.endValue = endValue
-    this.duration = duration
-    this.delay = delay
-    this.timingFunction = timingFunction || (v => v)
-    this.template = template || (v => v)
-  }
+  constructor(public object: any, public property: string, public startValue: number, public endValue: number, public duration: number, public delay: number, public timingFunction: (v: number) => number, public template: (v: number) => number) {}
 
-  receiveTime(time) {
+  receiveTime(time: number) {
     const range = this.endValue - this.startValue
     const progress = this.timingFunction(time / this.duration)
     this.object[this.property] = this.template(this.startValue + range * progress)

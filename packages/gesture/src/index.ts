@@ -1,101 +1,123 @@
-export class Listener {
-  constructor(element: Element, recognizer) {
-    let isListeningMouse = false
+type TouchIdentifier = number
 
-    const contexts = new Map()
-    // PC mousemove and mouseup event
-    // Event listen in document.documentElement
+export interface Recognizer {
+  start(point: MouseEvent | Touch, context: GestureContext): void
+  move(point: MouseEvent | Touch, context: GestureContext): void
+  end(point: MouseEvent | Touch, context: GestureContext): void
+  cancel(point: MouseEvent | Touch, context: GestureContext): void
+}
+
+interface GestureContext {
+  startX?: number
+  startY?: number
+  points?: { t: number; x: number; y: number }[]
+  isTap?: boolean
+  isPan?: boolean
+  isPress?: boolean
+  isVertical?: boolean
+  handler?: number | null
+  isFlick?: boolean
+}
+
+export class Listener {
+  private isListeningMouse = false
+  private contexts: Map<TouchIdentifier | string, GestureContext> = new Map()
+
+  constructor(private element: Element, private recognizer: Recognizer) {
+    this.setupMouseListeners()
+    this.setupTouchListeners()
+  }
+
+  private setupMouseListeners(): void {
     const el = document.documentElement
 
-    element.addEventListener('mousedown', (event) => {
+    this.element.addEventListener('mousedown', (event: MouseEvent) => {
       const context = Object.create(null)
-      // 移位做为key
-      contexts.set(`mouse${1 << event.button}`, context)
+      this.contexts.set(`mouse${1 << event.button}`, context)
 
-      recognizer.start(event, context)
+      this.recognizer.start(event, context)
 
-      const mouseMove = (event) => {
-        // mousemove中event.button may not exist
-        // get event.buttons 0b00001
+      const mouseMove = (event: MouseEvent) => {
         let button = 1
         while (button <= event.buttons) {
           if (button & event.buttons) {
-            // order of buttons & button property is not same
             let key
-            if (button === 2)
-              key = 4
-            else if (button === 4)
-              key = 2
-            else
-              key = button
-            const context = contexts.get(`mouse${key}`)
-            recognizer.move(event, context)
+            if (button === 2) key = 4
+            else if (button === 4) key = 2
+            else key = button
+
+            const context = this.contexts.get(`mouse${key}`)
+            if (context) this.recognizer.move(event, context)
           }
           button = button << 1
         }
       }
 
-      const mouseup = (event) => {
-        const context = contexts.get(`mouse${1 << event.button}`)
-        recognizer.end(event, context)
-        contexts.delete(`mouse${1 << event.button}`)
+      const mouseup = (event: MouseEvent) => {
+        const context = this.contexts.get(`mouse${1 << event.button}`)
+        if (context) this.recognizer.end(event, context)
+        this.contexts.delete(`mouse${1 << event.button}`)
+
         if (event.buttons === 0) {
           el.removeEventListener('mousemove', mouseMove)
           el.removeEventListener('mouseup', mouseup)
-          isListeningMouse = false
+          this.isListeningMouse = false
         }
       }
 
-      if (!isListeningMouse) {
+      if (!this.isListeningMouse) {
         el.addEventListener('mousemove', mouseMove)
         el.addEventListener('mouseup', mouseup)
-        isListeningMouse = true
+        this.isListeningMouse = true
       }
     })
+  }
 
-    // touchstart touchmove on an element
-    element.addEventListener('touchstart', (event) => {
+  private setupTouchListeners(): void {
+    this.element.addEventListener('touchstart', (event: TouchEvent) => {
       for (const touch of event.changedTouches) {
         const context = Object.create(null)
-        contexts.set(touch.identifier, context)
-        recognizer.start(touch, context)
+        this.contexts.set(touch.identifier, context)
+        this.recognizer.start(touch, context)
       }
     })
 
-    element.addEventListener('touchmove', (event) => {
+    this.element.addEventListener('touchmove', (event: TouchEvent) => {
       for (const touch of event.changedTouches) {
-        const context = contexts.get(touch.identifier)
-        // prevent event for example drop down event
-        // item can interrupt touchmove
-        event.preventDefault()
-        recognizer.move(touch, context)
+        const context = this.contexts.get(touch.identifier)
+        if (context) {
+          event.preventDefault()
+          this.recognizer.move(touch, context)
+        }
       }
     })
 
-    element.addEventListener('touchend', (event) => {
+    this.element.addEventListener('touchend', (event: TouchEvent) => {
       for (const touch of event.changedTouches) {
-        const context = contexts.get(touch.identifier)
-        recognizer.end(touch, context)
-        contexts.delete(touch.identifier)
+        const context = this.contexts.get(touch.identifier)
+        if (context) {
+          this.recognizer.end(touch, context)
+          this.contexts.delete(touch.identifier)
+        }
       }
     })
 
-    element.addEventListener('touchcancel', (event) => {
+    this.element.addEventListener('touchcancel', (event: TouchEvent) => {
       for (const touch of event.changedTouches) {
-        const context = contexts.get(touch.identifier)
-        recognizer.cancel(touch, context)
-        contexts.delete(touch.identifier)
+        const context = this.contexts.get(touch.identifier)
+        if (context) {
+          this.recognizer.cancel(touch, context)
+          this.contexts.delete(touch.identifier)
+        }
       }
     })
   }
 }
 
 export class Recognizer {
-  constructor(dispatcher) {
-    this.dispatcher = dispatcher
-  }
+  constructor(private dispatcher: Dispatcher) {}
 
-  start(point, context) {
+  start(point: MouseEvent | Touch, context: GestureContext): void {
     context.startX = point.clientX
     context.startY = point.clientY
     this.dispatcher.dispatch('start', {
@@ -119,15 +141,15 @@ export class Recognizer {
     }, 500)
   }
 
-  move(point, context) {
-    const dx = point.clientX - context.startX
-    const dy = point.clientY - context.startY
+  move(point: MouseEvent | Touch, context: GestureContext): void {
+    const dx = point.clientX - context.startX!
+    const dy = point.clientY - context.startY!
     if (!context.isPan && dx ** 2 + dy ** 2 > 100) {
       context.isPan = true
       context.isTap = false
       context.isPress = false
       context.isVertical = Math.abs(dx) - Math.abs(dy) >= 0
-      clearTimeout(context.handler)
+      clearTimeout(context.handler ?? undefined)
       this.dispatcher.dispatch('panStart', {
         startX: context.startX,
         startY: context.startY,
@@ -146,15 +168,15 @@ export class Recognizer {
         isVertical: context.isVertical,
       })
     }
-    context.points = context.points.filter(point => Date.now() - point.t < 500)
-    context.points.push({
+    context.points = context.points!.filter(point => Date.now() - point.t < 500)
+    context.points!.push({
       t: Date.now(),
       x: point.clientX,
       y: point.clientY,
     })
   }
 
-  end(point, context) {
+  end(point: MouseEvent | Touch, context: GestureContext): void {
     if (context.isTap) {
       this.dispatcher.dispatch('tap', {
         startX: context.startX,
@@ -162,17 +184,17 @@ export class Recognizer {
         clientX: point.clientX,
         clientY: point.clientY,
       })
-      clearTimeout(context.handler)
+      clearTimeout(context.handler ?? undefined)
     }
     if (context.isPress)
       this.dispatcher.dispatch('pressEnd', {})
 
-    context.points = context.points.filter(point => Date.now() - point.t < 500)
+    context.points = context.points!.filter(point => Date.now() - point.t < 500)
 
     let v = 0
-    if (context.points.length) {
-      const d = Math.sqrt((point.clientX - context.points[0].x) ** 2 + (point.clientY - context.points[0].y) ** 2)
-      v = d / (Date.now() - context.points[0].t)
+    if (context.points!.length) {
+      const d = Math.sqrt((point.clientX - context.points![0].x) ** 2 + (point.clientY - context.points![0].y) ** 2)
+      v = d / (Date.now() - context.points![0].t)
     }
     if (v > 1.5) {
       context.isFlick = true
@@ -212,18 +234,16 @@ export class Recognizer {
     })
   }
 
-  cancel = (point, context) => {
-    clearTimeout(context.handler)
+  cancel(point: MouseEvent | Touch, context: GestureContext): void {
+    clearTimeout(context.handler!)
     this.dispatcher.dispatch('cancel', {})
   }
 }
 
 export class Dispatcher {
-  constructor(element) {
-    this.element = element
-  }
+  constructor(private element: Element) {}
 
-  dispatch(type, properties) {
+  dispatch(type: string, properties: Record<string, any>): void {
     const event = new Event(type)
     for (const name in properties)
       event[name] = properties[name]
@@ -232,7 +252,7 @@ export class Dispatcher {
   }
 }
 
-export function enableGesture(element) {
+export function enableGesture(element: Element): void {
   // eslint-disable-next-line no-new
   new Listener(element, new Recognizer(new Dispatcher(element)))
 }

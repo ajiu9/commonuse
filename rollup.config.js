@@ -4,11 +4,11 @@ import path from 'node:path'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import esbuild from 'rollup-plugin-esbuild'
+
 // import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import alias from '@rollup/plugin-alias'
 import { entries } from './scripts/aliases.js'
-console.log('alias', alias)
 
 // import polyfillNode from 'rollup-plugin-polyfill-node'
 
@@ -91,10 +91,10 @@ function createConfig(format, output, plugins = []) {
     // external: resolveExternal(),
     plugins: [
       json({
-        namedExports: false
+        namedExports: false,
       }),
       alias({
-        entries
+        entries,
       }),
       // commonjs(),
       esbuild({
@@ -114,14 +114,14 @@ function createConfig(format, output, plugins = []) {
     },
   }
 
-  function resolveExternal() {
-    return [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-      // for commonuse
-      // ...['path', 'url', 'stream'],
-    ]
-  }
+  // function resolveExternal() {
+  //   return [
+  //     ...Object.keys(pkg.dependencies || {}),
+  //     ...Object.keys(pkg.peerDependencies || {}),
+  //     // for commonuse
+  //     // ...['path', 'url', 'stream'],
+  //   ]
+  // }
 }
 
 function createProductionConfig(format) {

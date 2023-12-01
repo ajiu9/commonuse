@@ -1,6 +1,6 @@
 export const linear = v => v
 
-export function cubicBezier(p1x, p1y, p2x, p2y) {
+export function cubicBezier(p1x: number, p1y: number, p2x: number, p2y: number) {
   const ZERO_LIMIT = 1e-6
   const ax = 3 * p1x - 3 * p2x + 1
   const bx = 3 * p2x - 6 * p1x
@@ -10,21 +10,21 @@ export function cubicBezier(p1x, p1y, p2x, p2y) {
   const by = 3 * p2y - 6 * p1y
   const cy = 3 * p1y
 
-  function sampleCurveDerivativeX(t) {
+  function sampleCurveDerivativeX(t: number) {
     return (3 * ax * t + 2 * bx) * t + cx
   }
 
-  function sampleCurveX(t) {
+  function sampleCurveX(t: number) {
     return ((ax * t + bx) * t + cx) * t
   }
 
-  function sampleCurveY(t) {
+  function sampleCurveY(t: number) {
     return ((ay * t + by) * t + cy) * t
   }
   // https://trac.webkit.org.brower/trunk/Source/WebCore/platform/animation
   // First try a few iterations of Newton's method -- normally very fast.
-  // http://en.wikipedia.org/wiki/Newton's_method
-  function solveCurveX(x) {
+  // http://en.wikipedia.org/wiki/Newton's method
+  function solveCurveX(x: number) {
     let t2 = x
     let derivative
     let x2
@@ -65,7 +65,7 @@ export function cubicBezier(p1x, p1y, p2x, p2y) {
       return t2
     }
   }
-  function solve(x) {
+  function solve(x: number) {
     return sampleCurveY(solveCurveX(x))
   }
 
