@@ -1,3 +1,4 @@
+import { isArray } from '@ajiu9/shared'
 import { aliases, keyCodeToKeyName } from './_configurable'
 
 class Keymap {
@@ -22,7 +23,7 @@ class Keymap {
   bind(key: string | string[], func: Function, target?: string): void {
     target = target || this.target
     if (!this.map[target]) this.map[target] = {}
-    if (Array.isArray(key)) {
+    if (isArray(key)) {
       key.forEach((keyItem) => {
         this.map[target][Keymap.normalize(keyItem)] = func
       })
@@ -35,7 +36,7 @@ class Keymap {
   // 删除指定按键标识符的绑定
   unbind(key: string | string[], target?: string): void {
     target = target || this.target
-    if (Array.isArray(key)) {
+    if (isArray(key)) {
       key.forEach((keyItem) => {
         delete this.map[target][Keymap.normalize(keyItem)]
       })
