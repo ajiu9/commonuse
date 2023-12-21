@@ -17,7 +17,8 @@
   "scripts": {
     "build": "node scripts/build.js",
     "lint": "eslint . --fix",
-    "release": "bumpp -r && pnpm -r publish --access public"
+    "release": "bumpp -r && pnpm -r publish --access public",
+    "clean": "rimraf packages/*/dist"
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.3",
