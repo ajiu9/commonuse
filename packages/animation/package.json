@@ -18,8 +18,8 @@
   "main": "index.js",
   "module": "dist/animation.esm-bundler.js",
   "files": [
-    "index.js",
-    "dist"
+    "dist",
+    "index.js"
   ],
   "buildOptions": {
     "name": "Animation",

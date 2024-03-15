@@ -14,7 +14,8 @@ export class TimeLine {
   }
 
   start() {
-    if (this.state !== 'initial') return
+    if (this.state !== 'initial')
+      return
     this.state = 'started'
     const startTime = Date.now()
     this[PAUSE_TIME] = 0
@@ -34,7 +35,8 @@ export class TimeLine {
           this[ANIMATIONS].delete(animation)
           t = animation.duration
         }
-        if (t > 0) animation.receiveTime(t)
+        if (t > 0)
+          animation.receiveTime(t)
       }
       this[TICK_HANDLER] = requestAnimationFrame(this[TICK])
     }
@@ -42,21 +44,24 @@ export class TimeLine {
   }
 
   add(animation: Animation, startTime?: number) {
-    if (arguments.length < 2) startTime = Date.now()
+    if (arguments.length < 2)
+      startTime = Date.now()
 
     this[ANIMATIONS].add(animation)
     this[START_TIME].set(animation, startTime)
   }
 
   pause() {
-    if (this.state !== 'started') return
+    if (this.state !== 'started')
+      return
     this.state = 'paused'
     this[PAUSE_START] = Date.now()
     cancelAnimationFrame(this[TICK_HANDLER])
   }
 
   resume() {
-    if (this.state !== 'paused') return
+    if (this.state !== 'paused')
+      return
     this.state = 'started'
     this[PAUSE_TIME] += Date.now() - this[PAUSE_START]
     this[TICK]()

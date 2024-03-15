@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^1.0.3",
+    "@antfu/eslint-config": "^2.8.2",
     "@rollup/plugin-alias": "^5.0.1",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.1",

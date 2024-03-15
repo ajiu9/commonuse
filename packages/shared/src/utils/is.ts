@@ -1,5 +1,5 @@
 export const isClient = typeof window !== 'undefined' && typeof document !== 'undefined'
-export const noop = () => {}
+export function noop() {}
 
 export const now = () => Date.now()
 export const timestamp = () => +Date.now()
@@ -16,7 +16,7 @@ export const isRegExp = (val: unknown): val is RegExp => toTypeString(val) === '
 export const isFunction = (val: unknown): val is Function => typeof val === 'function'
 export const isString = (val: unknown): val is string => typeof val === 'string'
 export const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
-export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
+export function isPromise<T = any>(val: unknown): val is Promise<T> {
   return (
     (isObject(val) || isFunction(val))
     && isFunction((val as any).then)
