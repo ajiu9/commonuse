@@ -16,3 +16,9 @@ export function promiseTimeout(
     setTimeout(resolve,ms)
   })
 }
+
+export function identify<T>(arg: T): T {
+  return arg
+}
+
+
