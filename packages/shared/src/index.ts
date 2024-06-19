@@ -1,5 +1,6 @@
 // export * from './general'
 export * from './utils'
+export * from './awaitTo'
 
 export interface SingletonPromiseReturn<T> {
   (): Promise<T>
