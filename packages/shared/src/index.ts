@@ -3,6 +3,11 @@ export * from './utils'
 export * from './awaitTo'
 export * from './promiseFactory'
 export * from './waiting'
+export * from './delay'
+export * from './addEvent'
+export * from './fixNumber'
+export * from './pattern'
+export * from './removeEvent'
 
 export interface SingletonPromiseReturn<T> {
   (): Promise<T>
