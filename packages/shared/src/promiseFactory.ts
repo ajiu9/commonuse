@@ -29,17 +29,16 @@
  * @returns - result
  */
 export function promiseFactory<T extends object>(
-	original: T,
-	resolver: () => Promise<any>
+  original: T,
+  resolver: () => Promise<any>,
 ): T & PromiseLike<T> {
-	return {
-		...original,
-		then<TResult1 = T, TResult2 = never>(
-			onFulfilled?: (value: T) => TResult1 | PromiseLike<TResult1>,
-			onRejected?: (reason: any) => TResult2 | PromiseLike<TResult2>
-		): PromiseLike<TResult1 | TResult2> {
-			return resolver().then(onFulfilled, onRejected)
-		}
-	}
+  return {
+    ...original,
+    then<TResult1 = T, TResult2 = never>(
+      onFulfilled?: (value: T) => TResult1 | PromiseLike<TResult1>,
+      onRejected?: (reason: any) => TResult2 | PromiseLike<TResult2>,
+    ): PromiseLike<TResult1 | TResult2> {
+      return resolver().then(onFulfilled, onRejected)
+    },
+  }
 }
-

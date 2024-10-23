@@ -1,16 +1,16 @@
 type TouchIdentifier = number
 
 export interface Recognizer {
-  start(point: MouseEvent | Touch, context: GestureContext): void
-  move(point: MouseEvent | Touch, context: GestureContext): void
-  end(point: MouseEvent | Touch, context: GestureContext): void
-  cancel(point: MouseEvent | Touch, context: GestureContext): void
+  start: (point: MouseEvent | Touch, context: GestureContext) => void
+  move: (point: MouseEvent | Touch, context: GestureContext) => void
+  end: (point: MouseEvent | Touch, context: GestureContext) => void
+  cancel: (point: MouseEvent | Touch, context: GestureContext) => void
 }
 
 interface GestureContext {
   startX?: number
   startY?: number
-  points?: { t: number; x: number; y: number }[]
+  points?: { t: number, x: number, y: number }[]
   isTap?: boolean
   isPan?: boolean
   isPress?: boolean
@@ -208,9 +208,9 @@ export class Recognizer {
         velocity: v,
       })
     }
-    else {
+    else
       context.isFlick = false
-    }
+
     if (context.isPan) {
       this.dispatcher.dispatch('panEnd', {
         startX: context.startX,

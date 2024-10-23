@@ -29,7 +29,7 @@
     "*.ts",
     "packages",
     "packages/.vitepress/components/*.vue",
-    "packages/.vitepress/*.ts",
+    "packages/.vitepress/*.ts"
   ],
   "exclude": [
     "node_modules",
@@ -39,4 +39,3 @@
     "packages/_docs"
   ]
 }
-

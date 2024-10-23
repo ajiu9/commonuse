@@ -18,8 +18,8 @@
   "main": "index.js",
   "module": "dist/commonuse.esm-bundler.js",
   "files": [
-    "index.js",
-    "dist"
+    "dist",
+    "index.js"
   ],
   "dependencies": {
     "@ajiu9/shared": "workspace:*"

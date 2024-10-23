@@ -28,9 +28,8 @@ class Keymap {
         this.map[target][Keymap.normalize(keyItem)] = func
       })
     }
-    else {
+    else
       this.map[target][Keymap.normalize(key)] = func
-    }
   }
 
   // 删除指定按键标识符的绑定
@@ -41,9 +40,8 @@ class Keymap {
         delete this.map[target][Keymap.normalize(keyItem)]
       })
     }
-    else {
+    else
       delete this.map[target][Keymap.normalize(key)]
-    }
   }
 
   // 删除对象下所有指定按键标识符的绑定

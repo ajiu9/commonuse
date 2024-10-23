@@ -17,8 +17,8 @@
   "sideEffects": false,
   "main": "index.js",
   "files": [
-    "index.js",
-    "dist"
+    "dist",
+    "index.js"
   ],
   "buildOptions": {
     "name": "Gesture",

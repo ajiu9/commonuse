@@ -8,17 +8,16 @@ import type { AnyFunction, AnyObject } from './types'
  * @param handler - Callback method.
  */
 function removeEvent(element: AnyObject, type: string, handler: AnyFunction) {
-	if (element.removeEventListener) {
-		element.removeEventListener(type, handler, false)
-	} else {
-		// Removing event handler functions from a hash table
-		if (element.events && element.events[type]) {
-			delete element.events[type][handler.$$guid]
-		}
-	}
+  if (element.removeEventListener)
+    element.removeEventListener(type, handler, false)
+  else {
+    // Removing event handler functions from a hash table
+    if (element.events && element.events[type])
+      delete element.events[type][handler.$$guid]
+  }
 }
 
 export {
   removeEvent,
-  removeEvent as default
+  removeEvent as default,
 }

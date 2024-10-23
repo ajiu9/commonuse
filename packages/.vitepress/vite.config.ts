@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite' 
+import { defineConfig } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import { resolve } from 'node:path'
 import UnoCSS from 'unocss/vite'
@@ -13,6 +13,6 @@ export default defineConfig({
       transformer: 'vue3',
     }),
     UnoCSS(),
-    Inspect()
-  ]
+    Inspect(),
+  ],
 })

@@ -1,3 +1,5 @@
-import antfu from '@antfu/eslint-config'
+import ajiu9 from '@ajiu9/eslint-config'
 
-export default antfu()
+export default ajiu9({
+  ignores: ['packages/.vitepress/cache'],
+})

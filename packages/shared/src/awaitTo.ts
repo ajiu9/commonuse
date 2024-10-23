@@ -1,5 +1,5 @@
 export type PromiseAll<P extends readonly unknown[] | []> = {
-	-readonly [K in keyof P]: Promise<P[K]>
+  -readonly [K in keyof P]: Promise<P[K]>
 }
 
 /**
@@ -22,26 +22,27 @@ export type PromiseAll<P extends readonly unknown[] | []> = {
  */
 export function awaitTo<T, E = Error>(promise: Promise<T>): Promise<[E, undefined] | [null, T]>
 export function awaitTo<P extends readonly unknown[] | [], E = Error>(
-	promise: PromiseAll<P>
+  promise: PromiseAll<P>
 ): Promise<[E, undefined] | [null, P]>
 export function awaitTo<T, P extends readonly unknown[] | [], E = Error>(
-	promise: Promise<T>,
-	...promises: PromiseAll<P>
+  promise: Promise<T>,
+  ...promises: PromiseAll<P>
 ): Promise<[E, undefined] | [null, [T, ...P]]>
 export function awaitTo<T, P extends readonly unknown[] | [], E = Error>(
-	promise: Promise<T> | PromiseAll<P>,
-	...promises: PromiseAll<P>
+  promise: Promise<T> | PromiseAll<P>,
+  ...promises: PromiseAll<P>
 ): Promise<[E, undefined] | [null, T | P | [T, ...P]]> {
-	if (Array.isArray(promise)) {
-		return Promise.all(promise as PromiseAll<P>)
-			.then<[null, P]>((data: P) => [null, data])
-			.catch<[E, undefined]>((err: E) => [err, undefined])
-	} else if (promises.length === 0) {
-		return (promise as Promise<T>)
-			.then<[null, T]>((data: T) => [null, data])
-			.catch<[E, undefined]>((err: E) => [err, undefined])
-	}
-	return Promise.all([promise as Promise<T>, ...promises])
-		.then<[null, [T, ...P]]>((data: [T, ...P]) => [null, data])
-		.catch<[E, undefined]>((err: E) => [err, undefined])
+  if (Array.isArray(promise)) {
+    return Promise.all(promise as PromiseAll<P>)
+      .then<[null, P]>((data: P) => [null, data])
+      .catch<[E, undefined]>((err: E) => [err, undefined])
+  }
+  else if (promises.length === 0) {
+    return (promise as Promise<T>)
+      .then<[null, T]>((data: T) => [null, data])
+      .catch<[E, undefined]>((err: E) => [err, undefined])
+  }
+  return Promise.all([promise as Promise<T>, ...promises])
+    .then<[null, [T, ...P]]>((data: [T, ...P]) => [null, data])
+    .catch<[E, undefined]>((err: E) => [err, undefined])
 }

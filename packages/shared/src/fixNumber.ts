@@ -19,9 +19,9 @@ import { pattern } from './pattern'
  * @returns - the new number
  */
 export function fixNumber(number: string | number, n = 2) {
-	const reg = new RegExp('^(.*\\..{' + n + '}).*$')
-	number = '' + number
-	if (!pattern.number.test(number)) throw new Error('"number" is not a number')
+  const reg = new RegExp(`^(.*\\..{${n}}).*$`)
+  number = `${number}`
+  if (!pattern.number.test(number)) throw new Error('"number" is not a number')
 
-	return parseFloat(number.replace(reg, '$1'))
+  return parseFloat(number.replace(reg, '$1'))
 }
