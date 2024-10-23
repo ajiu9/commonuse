@@ -13,16 +13,14 @@
       "@/*": ["packages/*/src"]
     },
     "resolveJsonModule": true,
-    "types": ["node"],
-    "allowJs": false,
     "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "noUnusedLocals": true,
-    "newLine": "LF",
-    "outDir": "temp",
-    "removeComments": false,
-    "sourceMap": false,
+    "declaration": true,
+    "declarationDir": "./types",
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": [
