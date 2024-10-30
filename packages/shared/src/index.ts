@@ -1,13 +1,14 @@
-// export * from './general'
-export * from './utils'
-export * from './awaitTo'
-export * from './promiseFactory'
-export * from './waiting'
-export * from './delay'
 export * from './addEvent'
+export * from './awaitTo'
+export * from './delay'
 export * from './fixNumber'
 export * from './pattern'
+export * from './promiseFactory'
 export * from './removeEvent'
+// export * from './general'
+export * from './utils'
+export * from './waiting'
+export * from './windowPrint'
 
 export interface SingletonPromiseReturn<T> {
   (): Promise<T>

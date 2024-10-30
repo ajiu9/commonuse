@@ -1,2 +1,2 @@
-export * from './useRafFn'
 export * from './useKeyMap'
+export * from './useRafFn'

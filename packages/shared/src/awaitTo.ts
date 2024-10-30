@@ -10,9 +10,9 @@ export type PromiseAll<P extends readonly unknown[] | []> = {
  * const bar = () => new Promise<boolean>((resolve, reject) => {})
  * const foo = () => new Promise<string>((resolve, reject) => {})
  * ;(async () => {
- * 	  const [err, data] = await awaitTo(bar())
- * 	  const [err1, data1] = await awaitTo(bar(), foo())
- * 	  const [err2, data2] = await awaitTo([bar(), foo()])
+ *   const [err, data] = await awaitTo(bar())
+ *   const [err1, data1] = await awaitTo(bar(), foo())
+ *   const [err2, data2] = await awaitTo([bar(), foo()])
  * })()
  * ```
  * @since 1.0.0

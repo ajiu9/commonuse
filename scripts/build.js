@@ -1,8 +1,9 @@
-import fs from 'node:fs/promises'
 import { existsSync } from 'node:fs'
+import fs from 'node:fs/promises'
+import { createRequire } from 'node:module'
 import { cpus } from 'node:os'
 import path from 'node:path'
-import { createRequire } from 'node:module'
+import process from 'process'
 import { execa, execaSync } from 'execa'
 import minimist from 'minimist'
 

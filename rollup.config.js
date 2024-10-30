@@ -1,13 +1,14 @@
 import { createRequire } from 'node:module'
-import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+import process from 'process'
+import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import esbuild from 'rollup-plugin-esbuild'
 
+import esbuild from 'rollup-plugin-esbuild'
 // import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
-import alias from '@rollup/plugin-alias'
 import { entries } from './scripts/aliases.js'
 
 // import polyfillNode from 'rollup-plugin-polyfill-node'

@@ -26,7 +26,7 @@
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
-    "@ajiu9/eslint-config": "^2.1.0",
+    "@ajiu9/eslint-config": "^2.4.0",
     "@rollup/plugin-alias": "^5.0.1",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.1",
