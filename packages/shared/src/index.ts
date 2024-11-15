@@ -1,4 +1,5 @@
 export * from './addEvent'
+export * from './amountCapital'
 export * from './awaitTo'
 export * from './delay'
 export * from './fixNumber'
