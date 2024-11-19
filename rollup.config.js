@@ -9,6 +9,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import esbuild from 'rollup-plugin-esbuild'
 // import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import pluginDts from 'rollup-plugin-dts'
 import { entries } from './scripts/aliases.js'
 
 // import polyfillNode from 'rollup-plugin-polyfill-node'
@@ -43,10 +44,15 @@ const outputConfigs = {
     file: resolve(`dist/${name}.global.js`),
     format: 'iife',
   },
+  'dts': {
+    file: resolve(`dist/${name}.d.ts`),
+    format: 'dts',
+  },
 }
 
 const defaultFormats = ['esm-bundler', 'cjs']
 const packageFormats = packageOptions.formats || defaultFormats
+const input = resolve('src/index.ts')
 
 const packageConfigs = []
 
@@ -55,11 +61,27 @@ if (process.env.NODE_ENV === 'production') {
     if (packageOptions.prod === false)
       return
 
-    if (format === 'cjs')
-      packageConfigs.push(createProductionConfig(format))
+    // if (/^(global|esm-browser)/.test(format))
+    //   packageConfigs.push(createMinifiedConfig(format))
 
-    if (/^(global|esm-browser)?/.test(format))
-      packageConfigs.push(createMinifiedConfig(format))
+    if (format === 'dts') {
+      packageConfigs.push({
+        input,
+        output: [
+          { file: `packages/${name}/dist/${name}.d.cts` },
+          { file: `packages/${name}/dist/${name}.d.mts` },
+          { file: `packages/${name}/dist/${name}.d.ts` },
+        ],
+        plugins: [
+          alias({
+            entries,
+          }),
+          pluginDts(),
+        ],
+      })
+    }
+    else
+      packageConfigs.push(createProductionConfig(format))
   })
 }
 
@@ -84,9 +106,8 @@ function createConfig(format, output, plugins = []) {
   if (isGlobalBuild)
     output.name = packageOptions.name
 
-  const entryFile = 'src/index.ts'
   return {
-    input: resolve(entryFile),
+    input,
     // Global and Browser ESM builds inline everything so that they can be
     // used alone.
     // external: resolveExternal(),
@@ -105,6 +126,7 @@ function createConfig(format, output, plugins = []) {
         target: isNodeBuild ? 'es2019' : 'es2015',
         // define: resolveDefine()
       }),
+      pluginDts,
       nodeResolve(),
       // polyfillNode(),
       ...plugins,

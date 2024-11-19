@@ -18,3 +18,7 @@ export function promiseTimeout(
 export function identify<T>(arg: T): T {
   return arg
 }
+
+export function invoke<T>(fn: () => T): T {
+  return fn()
+}

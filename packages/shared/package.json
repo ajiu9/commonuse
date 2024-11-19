@@ -17,6 +17,7 @@
   "sideEffects": false,
   "main": "index.js",
   "module": "dist/shared.esm-bundler.js",
+  "types": "dist/shared.d.cts",
   "files": [
     "dist",
     "index.js"
@@ -25,7 +26,8 @@
     "name": "shared",
     "formats": [
       "esm-bundler",
-      "cjs"
+      "cjs",
+      "dts"
     ]
   }
 }

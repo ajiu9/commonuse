@@ -8,6 +8,13 @@ export default defineConfig({
   ignoreDeadLinks: true,
   lastUpdated: true,
 
+  markdown: {
+    theme: {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark',
+    },
+  },
+
   themeConfig: {
     nav: [
       { text: 'Examples', link: '/markdown-examples' },
@@ -26,5 +33,11 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/ajiu9/vistara' },
     ],
   },
+  head: [
+    ['meta', { name: 'author', content: 'Ajiu9' }],
+    ['meta', { property: 'og:title', content: 'CommonUse' }],
+    ['meta', { property: 'og:description', content: 'Collection of Essential Js Utilities' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
+  ],
   vite: viteConfig,
 })

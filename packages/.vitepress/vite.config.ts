@@ -5,6 +5,13 @@ import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
+  server: {
+    fs: {
+      allow: [
+        resolve(__dirname, '..'),
+      ],
+    },
+  },
   plugins: [
     Components({
       dirs: resolve(__dirname, 'theme/components'),
