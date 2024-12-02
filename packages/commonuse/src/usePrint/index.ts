@@ -2,7 +2,7 @@ import { windowPrint } from '@ajiu9/shared'
 
 export function usePrint() {
   let html = ''
-  const getElementSrt = (element, selector) => {
+  const getElementSrt = (element: { querySelector: (arg0: any) => any }, selector: any) => {
     const el = element.querySelector(selector)
     if (el)
       return el.cloneNode(true).innerHTML
@@ -12,7 +12,7 @@ export function usePrint() {
   const getTableStyle = () => {
     return '<style>*{color: #000; font-size: 14px; line-height: 23px; padding: 0; margin: 0; line-height: 1.4;} tr>th, tr>td {padding: 5px 2px; text-align: center;} .bar {padding: 10px 24px; background-color: #fff; border-bottom: 1px solid #dce3e4;}</style>'
   }
-  const addHtmlContent = ({ content }) => {
+  const addHtmlContent = ({ content: String }) => {
     html = `<div class="print-wrapper">${content}</div>`
   }
   const getTableContent = (thead, tbody) => {
