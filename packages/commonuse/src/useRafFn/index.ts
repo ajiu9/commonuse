@@ -1,5 +1,5 @@
 // import { tryOnScopeDispose } from '@vueuse/shared'
-import type { Pausable } from '@ajiu9/shared'
+import type { Pausable } from '@commonuse/shared'
 import type { ConfigurableWindow } from '../_configurable'
 import { defaultWindow } from '../_configurable'
 

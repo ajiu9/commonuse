@@ -1,4 +1,4 @@
-import { invoke } from '@ajiu9/shared'
+import { invoke } from '@commonuse/shared'
 import { describe, it } from 'vitest'
 import { until } from '.'
 

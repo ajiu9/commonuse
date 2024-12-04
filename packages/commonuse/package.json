@@ -22,7 +22,7 @@
     "index.js"
   ],
   "dependencies": {
-    "@ajiu9/shared": "workspace:*"
+    "@commonuse/shared": "workspace:*"
   },
   "buildOptions": {
     "name": "Commonuse",

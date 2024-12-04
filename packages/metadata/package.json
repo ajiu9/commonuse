@@ -1,7 +1,8 @@
 {
-  "name": "@commonuse/shared",
+  "name": "@commonuse/metadata",
+  "type": "module",
   "version": "0.0.1",
-  "description": "",
+  "description": "Metadata for Commonuse functions",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
   "license": "MIT",
   "homepage": "https://github.com/ajiu9/commonuse",
@@ -10,18 +11,32 @@
     "url": "https://github.com/ajiu9/commonuse",
     "directory": "packages/animation"
   },
+  "bugs": {
+    "url": "https://github.com/vueuse/vueuse/issues"
+  },
   "keywords": [
     "javaScript",
     "util"
   ],
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    },
+    "./*": "./*"
+  },
   "main": "index.js",
-  "module": "dist/shared.esm-bundler.js",
-  "types": "dist/shared.d.cts",
+  "module": "dist/metadata.esm-bundler.js",
+  "types": "dist/metadata.d.cts",
+
   "files": [
     "dist",
     "index.js"
   ],
+  "scripts": {
+    "update": "esno scripts/update.ts"
+  },
   "buildOptions": {
     "name": "shared",
     "formats": [
