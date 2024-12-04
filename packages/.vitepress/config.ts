@@ -18,6 +18,32 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Examples', link: '/markdown-examples' },
+      {
+        text: 'Functions',
+        items: [
+          {
+            text: '',
+            items: [
+              { text: 'All Functions', link: '/functions#' },
+            ],
+          },
+          {
+            text: 'Core', items: [
+              { text: 'Shared', link: '/functions#category=animation' },
+            ],
+          },
+          {
+            text: 'Animation', items: [
+              { text: 'Animation', link: '/functions#category=animation' },
+            ],
+          },
+          {
+            text: 'Shared', items: [
+              { text: 'Shared', link: '/functions#category=animation' },
+            ],
+          },
+        ],
+      },
     ],
 
     sidebar: [
