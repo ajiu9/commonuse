@@ -20,7 +20,7 @@ const entries = {
 const nonSrcPackages = []
 
 for (const dir of dirs) {
-  const key = `@commonuse/${dir}`
+  const key = `@ajiu9/${dir}`
   if (
     dir !== 'commonuse'
     && !nonSrcPackages.includes(dir)

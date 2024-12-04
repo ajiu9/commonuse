@@ -1,4 +1,4 @@
-import { windowPrint } from '@commonuse/shared'
+import { windowPrint } from '@ajiu9/shared'
 
 export function usePrint() {
   let html = ''

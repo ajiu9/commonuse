@@ -3,7 +3,7 @@
  *
  * @example
  * ```js
- * import { promiseFactory, waiting } from '@commonuse/shared'
+ * import { promiseFactory, waiting } from '@ajiu9/shared'
  *
  * function promise() {
  *   const stats = {

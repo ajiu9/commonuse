@@ -1,4 +1,4 @@
-import { isArray } from '@commonuse/shared'
+import { isArray } from '@ajiu9/shared'
 import { aliases, keyCodeToKeyName } from './_configurable'
 
 class Keymap {
