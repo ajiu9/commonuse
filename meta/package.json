@@ -1,0 +1,12 @@
+{
+  "name": "@ajiu9/meta",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "update": "tsx scripts/update"
+  }
+}
