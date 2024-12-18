@@ -20,13 +20,14 @@
     "lint:fix": "pnpm lint --fix",
     "release": "bumpp -r && pnpm -r publish --access public",
     "clean": "rimraf packages/*/dist",
-    "meta": "tsx scripts/meta.ts",
+    "meta:update": "pnpm -C meta update",
     "docs": "vitepress dev packages --open",
     "docs:build": "vitepress build packages",
     "docs:preview": "vitepress preview packages",
     "prepare": "simple-git-hooks",
     "test": "vitest",
-    "test:cov": "vitest run --coverage"
+    "test:cov": "vitest run --coverage",
+    "postinstall": "pnpm run meta:update"
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^2.5.0",

@@ -1,4 +1,4 @@
-import type { CommonUseFunction, PackageIndexes } from '../meta'
+import type { CommonUseFunction, PackageIndexes } from '..'
 import { existsSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -6,7 +6,7 @@ import fg from 'fast-glob'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
 import Git from 'simple-git'
-import { packages } from '../meta'
+import { packages } from '..'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 export const DIR_PACKAGE = resolve(__dirname, '../meta')
