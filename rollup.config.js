@@ -142,7 +142,7 @@ function createConfig(format, output, plugins = []) {
   //   return [
   //     ...Object.keys(pkg.dependencies || {}),
   //     ...Object.keys(pkg.peerDependencies || {}),
-  //     // for cuse
+  //     // for comuse
   //     // ...['path', 'url', 'stream'],
   //   ]
   // }

@@ -18,7 +18,7 @@ const allTargets = fs.readdirSync('packages').filter((f) => {
 
 export const targets = (() => {
   const ret = allTargets.slice()
-  // const name = 'cuse'
+  // const name = 'comuse'
   // const index = ret.findIndex(item => item === name)
   // ret.splice(index, 1)
   return ret

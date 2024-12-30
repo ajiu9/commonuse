@@ -107,7 +107,13 @@ importers:
 
   packages/animation: {}
 
-  packages/commonuse:
+  packages/core:
+    dependencies:
+      '@ajiu9/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/cuse:
     dependencies:
       '@ajiu9/shared':
         specifier: workspace:*
