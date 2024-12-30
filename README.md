@@ -1,1 +1,1 @@
-# @ajiu9/common-use-monorepo
+# use-monorepo
