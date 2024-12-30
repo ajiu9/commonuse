@@ -4,11 +4,10 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 
 const allTargets = fs.readdirSync('packages').filter((f) => {
-  // TODO
-  if (f === '.vitepress') return false
-
   if (!fs.statSync(`packages/${f}`).isDirectory())
     return false
+
+  if (!fs.existsSync(`packages/${f}/package.json`)) return false
 
   const pkg = require(`../packages/${f}/package.json`)
   if (pkg.private && !pkg.buildOptions)

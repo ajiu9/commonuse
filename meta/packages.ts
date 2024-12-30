@@ -22,7 +22,7 @@ export interface PackageManifest {
 export const packages: PackageManifest[] = [
   {
     name: 'metadata',
-    display: 'Metadata for Commonuse functions',
+    display: 'Metadata for Cuse functions',
     manualImport: true,
     iife: false,
     utils: true,

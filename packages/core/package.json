@@ -1,5 +1,5 @@
 {
-  "name": "cuse",
+  "name": "cuse-core",
   "version": "1.1.3-beta",
   "description": "A library of commonly used utility functions",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
@@ -16,7 +16,7 @@
   ],
   "sideEffects": false,
   "main": "index.js",
-  "module": "dist/cuse.esm-bundler.js",
+  "module": "dist/cuse-core.esm-bundler.js",
   "files": [
     "dist",
     "index.js"
@@ -25,7 +25,7 @@
     "@ajiu9/shared": "workspace:*"
   },
   "buildOptions": {
-    "name": "Cuse",
+    "name": "CuseCore",
     "formats": [
       "esm-bundler",
       "cjs",

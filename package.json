@@ -15,7 +15,7 @@
     "node": ">=16.11.0"
   },
   "scripts": {
-    "build": "pnpm run update && pnpm run -C packages/metadata build",
+    "build": "node scripts/build.js",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
     "release": "bumpp -r && pnpm -r publish --access public",

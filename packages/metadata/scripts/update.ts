@@ -1,4 +1,4 @@
-import type { CommonUseFunction, PackageIndexes } from '..'
+import type { CuseFunction, PackageIndexes } from '..'
 import { existsSync } from 'node:fs'
 import * as fs from 'node:fs/promises'
 import { join, relative, resolve } from 'node:path'
@@ -61,7 +61,7 @@ export async function readMetadata() {
       const mdPath = join(dir, fnName, 'index.md')
       const tsPath = join(dir, fnName, 'index.ts')
 
-      const fn: CommonUseFunction = {
+      const fn: CuseFunction = {
         name: fnName,
         package: pkg.name,
         lastUpdated: +await git.raw(['log', '-1', '--format=%at', tsPath]) * 1000,
@@ -135,7 +135,7 @@ export async function readMetadata() {
   return indexes
 }
 
-export function getCategories(functions: CommonUseFunction[]): string[] {
+export function getCategories(functions: CuseFunction[]): string[] {
   return uniq(
     functions
       .filter(i => !i.internal)

@@ -1,4 +1,4 @@
-import type {  PackageManifest } from '@vueuse/metadata'
+// import type {  PackageManifest } from '@vueuse/metadata'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -175,5 +175,5 @@ function createProductionConfig(format) {
 //   )
 // }
 
-export function createRollupConfig( pkg: PackageManifest,
-  cwd = process.cwd(),) {}
+export function createRollupConfig(pkg,
+  cwd = process.cwd()) {}
