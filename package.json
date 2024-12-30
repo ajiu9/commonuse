@@ -31,11 +31,13 @@
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^2.5.0",
+    "@ajiu9/shared": "workspace:*",
     "@rollup/plugin-alias": "^5.0.1",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
+    "@shikijs/vitepress-twoslash": "^1.24.4",
     "@types/node": "^22.8.5",
     "@vitest/coverage-v8": "2.1.5",
     "bumpp": "^9.1.1",

@@ -1,5 +1,13 @@
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { defineConfig } from 'vitepress'
 import viteConfig from './vite.config'
+
+const Guide = [
+  { text: 'Get Started', link: '/guide/' },
+]
+const DefaultSideBar = [
+  { text: 'Guide', items: Guide },
+]
 
 export default defineConfig({
   title: 'Commonuse',
@@ -13,11 +21,14 @@ export default defineConfig({
       light: 'vitesse-light',
       dark: 'vitesse-dark',
     },
+    codeTransformers: [
+      transformerTwoslash(),
+    ],
   },
 
   themeConfig: {
     nav: [
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'Guide', link: '/guide' },
       {
         text: 'Functions',
         items: [
@@ -44,17 +55,16 @@ export default defineConfig({
           },
         ],
       },
-    ],
-
-    sidebar: [
       {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-        ],
+        text: 'Animation', link: '/animation',
+      },
+      {
+        text: 'Gesture', link: '/gesture',
       },
     ],
+    sidebar: {
+      '/guide/': DefaultSideBar,
+    },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ajiu9/vistara' },
     ],

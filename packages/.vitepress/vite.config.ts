@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-// import UnoCSS from 'unocss/vite'
+import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
@@ -19,7 +19,13 @@ export default defineConfig({
       dts: resolve(__dirname, 'components.d.ts'),
       transformer: 'vue3',
     }),
-    // UnoCSS(),
+    UnoCSS(),
     Inspect(),
   ],
+  resolve: {
+    alias: {
+      '@ajiu9/animation': resolve(__dirname, '../animation/index.ts'),
+      '@ajiu9/shared': resolve(__dirname, '../shared/src/index.ts'),
+    },
+  },
 })

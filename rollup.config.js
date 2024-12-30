@@ -154,22 +154,24 @@ function createProductionConfig(format) {
   })
 }
 
-function createMinifiedConfig(format) {
-  return createConfig(
-    format,
-    {
-      file: outputConfigs[format].file.replace(/\.js$/, '.js'),
-      format: outputConfigs[format].format,
-    },
-    // [
-    //   terser({
-    //     module: format.startsWith('esm'),
-    //     compress: {
-    //       ecma: 2015,
-    //       pure_getters: true,
-    //     },
-    //     safari10: true,
-    //   }),
-    // ],
-  )
-}
+// function createMinifiedConfig(format) {
+//   return createConfig(
+//     format,
+//     {
+//       file: outputConfigs[format].file.replace(/\.js$/, '.js'),
+//       format: outputConfigs[format].format,
+//     },
+//     // [
+//     //   terser({
+//     //     module: format.startsWith('esm'),
+//     //     compress: {
+//     //       ecma: 2015,
+//     //       pure_getters: true,
+//     //     },
+//     //     safari10: true,
+//     //   }),
+//     // ],
+//   )
+// }
+
+export function createRollupConfig() {}
