@@ -3,12 +3,12 @@
 ## Installation
 
 ```bash
-npm i cuse
+npm i comuse
 ```
 
 ## Usage Example
 
-Simply importing the functions you need from `cuse`
+Simply importing the functions you need from `comuse`
 
 ```ts twoslash
 import { createSingletonPromise } from '@ajiu9/shared'

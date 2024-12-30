@@ -10,7 +10,7 @@ const DefaultSideBar = [
 ]
 
 export default defineConfig({
-  title: 'Cuse',
+  title: 'Comuse',
   description: 'Collection of Essential Js Utilities',
   lang: 'en-US',
   ignoreDeadLinks: true,
@@ -71,7 +71,7 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'author', content: 'Ajiu9' }],
-    ['meta', { property: 'og:title', content: 'Cuse' }],
+    ['meta', { property: 'og:title', content: 'Comuse' }],
     ['meta', { property: 'og:description', content: 'Collection of Essential Js Utilities' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
   ],

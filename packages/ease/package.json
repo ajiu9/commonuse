@@ -4,10 +4,10 @@
   "description": "",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
   "license": "MIT",
-  "homepage": "https://github.com/ajiu9/cuse",
+  "homepage": "https://github.com/ajiu9/comuse",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ajiu9/cuse",
+    "url": "https://github.com/ajiu9/comuse",
     "directory": "packages/ease"
   },
   "keywords": [
