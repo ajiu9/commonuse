@@ -1,24 +1,24 @@
 import type { CommonUseFunction, PackageIndexes } from '..'
 import { existsSync } from 'node:fs'
+import * as fs from 'node:fs/promises'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fg from 'fast-glob'
-import fs from 'fs-extra'
 import matter from 'gray-matter'
 import Git from 'simple-git'
 import { packages } from '..'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
-export const DIR_PACKAGE = resolve(__dirname, '../meta')
-export const DIR_ROOT = resolve(__dirname, '../')
+export const DIR_PACKAGE = resolve(__dirname, '..')
+export const DIR_ROOT = resolve(__dirname, '../../..')
 export const DIR_SRC = resolve(DIR_ROOT, 'packages')
+// export const DIR_TYPES = resolve(DIR_ROOT, 'types/packages')
 export const DOCS_URL = 'https://ajiu9.cn'
 
 export const git = Git(DIR_ROOT)
-console.log('DIR_PACKAGE: ', DIR_PACKAGE)
 async function run() {
   const indexes = await readMetadata()
-  await fs.writeJSON(join(DIR_PACKAGE, 'index.json'), indexes, { spaces: 2 })
+  await fs.writeFile(join(DIR_PACKAGE, 'index.json'), `${JSON.stringify(indexes, null, 2)}\n`)
 }
 
 run()
@@ -132,7 +132,6 @@ export async function readMetadata() {
   })
   indexes.functions.forEach(fn => fn.related?.sort())
 
-  console.log(indexes)
   return indexes
 }
 

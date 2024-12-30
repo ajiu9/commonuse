@@ -1,5 +1,5 @@
 {
-  "name": "@ajiu9/meta",
+  "name": "cuse-metadata",
   "version": "0.0.1",
   "private": true,
   "description": "",
@@ -7,6 +7,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "update": "tsx scripts/update"
+    "update": "tsx scripts/update",
+    "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild"
   }
 }

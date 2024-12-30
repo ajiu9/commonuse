@@ -14,7 +14,7 @@ function resolveEntryForPkg(p) {
 const dirs = readdirSync(new URL('../packages', import.meta.url))
 
 const entries = {
-  commonuse: resolveEntryForPkg('commonuse'),
+  cuse: resolveEntryForPkg('cuse'),
 }
 
 const nonSrcPackages = []
@@ -22,7 +22,7 @@ const nonSrcPackages = []
 for (const dir of dirs) {
   const key = `@ajiu9/${dir}`
   if (
-    dir !== 'commonuse'
+    dir !== 'cuse'
     && !nonSrcPackages.includes(dir)
     && !(key in entries)
     && statSync(new URL(`../packages/${dir}`, import.meta.url)).isDirectory()

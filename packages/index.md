@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "commonuse"
+  name: "cuse"
   text: "Collection of Js Utilities"
   tagline: Collection of Essential Js Utilities
   actions:
@@ -15,7 +15,7 @@ hero:
       link: /functions
     - theme: alt
       text: View on GitHub
-      link: https://github.com/ajiu9/commonuse
+      link: https://github.com/ajiu9/cuse
 
 features:
   - title: Feature Rich

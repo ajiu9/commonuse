@@ -15,7 +15,7 @@
     "node": ">=16.11.0"
   },
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "pnpm run update && pnpm run -C packages/metadata build",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
     "release": "bumpp -r && pnpm -r publish --access public",
@@ -27,7 +27,8 @@
     "prepare": "simple-git-hooks",
     "test": "vitest",
     "test:cov": "vitest run --coverage",
-    "postinstall": "pnpm run meta:update"
+    "postinstall": "pnpm run meta:update",
+    "update": "pnpm run -C packages/metadata update"
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^2.5.0",

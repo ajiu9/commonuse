@@ -4,10 +4,10 @@
   "description": "",
   "author": "ajiu9 <615944323@qq.com> (https://github.com/ajiu9/)",
   "license": "MIT",
-  "homepage": "https://github.com/ajiu9/commonuse",
+  "homepage": "https://github.com/ajiu9/cuse",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ajiu9/commonuse",
+    "url": "https://github.com/ajiu9/cuse",
     "directory": "packages/gesture"
   },
   "keywords": [
