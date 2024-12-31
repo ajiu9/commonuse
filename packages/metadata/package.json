@@ -1,13 +1,20 @@
 {
   "name": "comuse-metadata",
   "version": "2.0.2-beta.1",
-  "private": true,
-  "description": "",
+  "description": "comuse metadata",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
     "update": "tsx scripts/update",
     "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild"
+  },
+  "buildOptions": {
+    "name": "comuse-metadata",
+    "formats": [
+      "esm-bundler",
+      "cjs",
+      "dts"
+    ]
   }
 }

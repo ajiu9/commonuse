@@ -53,7 +53,7 @@ const outputConfigs = {
 
 const defaultFormats = ['esm-bundler', 'cjs']
 const packageFormats = packageOptions.formats || defaultFormats
-const input = resolve('src/index.ts')
+const input = resolve('index.ts')
 
 const packageConfigs = []
 

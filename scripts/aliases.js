@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 function resolveEntryForPkg(p) {
   return path.resolve(
     fileURLToPath(import.meta.url),
-    `../../packages/${p}/src/index.ts`,
+    `../../packages/${p}/index.ts`,
   )
 }
 
@@ -17,10 +17,17 @@ const entries = {
   comuse: resolveEntryForPkg('comuse'),
 }
 
-const nonSrcPackages = []
-
+const nonSrcPackages = ['.vitepress', 'guide']
+const map = {
+  animation: '@ajiu9/animation',
+  ease: '@ajiu9/ease',
+  gesture: '@ajiu9/gesture',
+  shared: '@ajiu9/shared',
+  metadata: 'comuse-metadata',
+  core: 'comuse-core',
+}
 for (const dir of dirs) {
-  const key = `@ajiu9/${dir}`
+  const key = map[dir]
   if (
     dir !== 'comuse'
     && !nonSrcPackages.includes(dir)
@@ -29,5 +36,4 @@ for (const dir of dirs) {
   )
     entries[key] = resolveEntryForPkg(dir)
 }
-console.log('entries', entries)
 export { entries }

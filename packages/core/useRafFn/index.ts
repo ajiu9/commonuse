@@ -1,7 +1,7 @@
 // import { tryOnScopeDispose } from '@vueuse/shared'
 import type { Pausable } from '@ajiu9/shared'
-import type { ConfigurableWindow } from '../../cuse/src/_configurable'
-import { defaultWindow } from '../../cuse/src/_configurable'
+import type { ConfigurableWindow } from '../_configurable'
+import { defaultWindow } from '../_configurable'
 
 export interface UseRafFnCallbackArguments {
   /**

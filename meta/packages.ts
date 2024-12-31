@@ -26,7 +26,9 @@ export const packages: PackageManifest[] = [
     manualImport: true,
     iife: false,
     utils: true,
-    target: 'node14',
+    external: [
+      'comuse-metadata',
+    ],
   },
   {
     name: 'shared',
