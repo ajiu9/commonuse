@@ -1,9 +1,11 @@
 import { isArray } from '@ajiu9/shared'
 import { aliases, keyCodeToKeyName } from './_configurable'
 
+type KeyHandler = (event: KeyboardEvent, keyId: string) => any
+
 class Keymap {
   private target: string
-  private map: { [key: string]: { [key: string]: Function } }
+  private map: { [key: string]: { [key: string]: KeyHandler } }
 
   private static readonly DEFAULT_TARGET = 'default'
   private static readonly keyCodeToKeyName = keyCodeToKeyName
@@ -20,7 +22,7 @@ class Keymap {
   }
 
   // 绑定指定的按键标识符和指定的处理程序函数
-  bind(key: string | string[], func: Function, target?: string): void {
+  bind(key: string | string[], func: KeyHandler, target?: string): void {
     target = target || this.target
     if (!this.map[target]) this.map[target] = {}
     if (isArray(key)) {
@@ -56,13 +58,12 @@ class Keymap {
 
   // 在指定 HTML 元素上配置 Keymap
   install(element: HTMLElement): void {
-    const keymap = this
-    const handler = function (event: KeyboardEvent) {
-      return keymap.dispatch(event, element)
+    const handler = (event: KeyboardEvent) => {
+      return this.dispatch(event, element)
     }
 
     if (element.addEventListener) element.addEventListener('keydown', handler, false)
-    else if (element.attachEvent) element.attachEvent('onkeydown', handler)
+    else if ((element as any).attachEvent) (element as any).attachEvent('onkeydown', handler)
   }
 
   // 分派事件
@@ -84,8 +85,8 @@ class Keymap {
     // 如果实现 3 级 DOM 规范的 key 属性，获取 key
     if (event.key) keyName = event.key
     // 在 Safari 和 Chrome 上用 keyIdentifier 获取功能键键名
-    else if (event.keyIdentifier && event.keyIdentifier.substring(0, 2) !== 'U+')
-      keyName = event.keyIdentifier
+    else if ('keyIdentifier' in event && (event as any).keyIdentifier.substring(0, 2) !== 'U+')
+      keyName = (event as any).keyIdentifier
     else keyName = Keymap.keyCodeToKeyName[event.keyCode]
 
     // 如果不能找出键名，只能返回并忽略这个事件
@@ -122,7 +123,7 @@ class Keymap {
 
     keyId = keyId.toLowerCase() // 一切都是小写
     words = keyId.split(/\s|[-+_]/) // 分割辅助键和键名
-    keyName = words.pop() // 键名是最后一个
+    keyName = words.pop() || '' // 键名是最后一个
     keyName = Keymap.aliases[keyName] || keyName
     words.sort() // 排序剩下的辅助键
     words.push(keyName) // 添加到序列化名字后面

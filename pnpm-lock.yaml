@@ -107,13 +107,7 @@ importers:
 
   packages/animation: {}
 
-  packages/core:
-    dependencies:
-      '@ajiu9/shared':
-        specifier: workspace:*
-        version: link:../shared
-
-  packages/cuse:
+  packages/comuse:
     dependencies:
       '@ajiu9/animation':
         specifier: workspace:*
@@ -124,6 +118,15 @@ importers:
       '@ajiu9/gesture':
         specifier: workspace:*
         version: link:../gesture
+      '@ajiu9/shared':
+        specifier: workspace:*
+        version: link:../shared
+      comuse-core:
+        specifier: workspace:*
+        version: link:../core
+
+  packages/core:
+    dependencies:
       '@ajiu9/shared':
         specifier: workspace:*
         version: link:../shared

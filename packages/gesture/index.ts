@@ -1,6 +1,6 @@
 type TouchIdentifier = number
 
-export interface Recognizer {
+export interface GestureRecognizer {
   start: (point: MouseEvent | Touch, context: GestureContext) => void
   move: (point: MouseEvent | Touch, context: GestureContext) => void
   end: (point: MouseEvent | Touch, context: GestureContext) => void
@@ -23,67 +23,72 @@ export class Listener {
   private isListeningMouse = false
   private contexts: Map<TouchIdentifier | string, GestureContext> = new Map()
 
-  constructor(private element: Element, private recognizer: Recognizer) {
+  constructor(private element: Element, private recognizer: GestureRecognizer) {
     this.setupMouseListeners()
     this.setupTouchListeners()
   }
 
   private setupMouseListeners(): void {
-    const el = document.documentElement
+    const el: HTMLElement = document.documentElement
 
-    this.element.addEventListener('mousedown', (event: MouseEvent) => {
+    this.element.addEventListener('mousedown', (event: Event) => {
+      const mouseEvent = event as MouseEvent
       const context = Object.create(null)
-      this.contexts.set(`mouse${1 << event.button}`, context)
+      this.contexts.set(`mouse${1 << mouseEvent.button}`, context)
 
-      this.recognizer.start(event, context)
+      this.recognizer.start(mouseEvent, context)
 
-      const mouseMove = (event: MouseEvent) => {
+      const mouseMove = (event: Event) => {
+        const mouseEvent = event as MouseEvent
         let button = 1
-        while (button <= event.buttons) {
-          if (button & event.buttons) {
+        while (button <= mouseEvent.buttons) {
+          if (button & mouseEvent.buttons) {
             let key
             if (button === 2) key = 4
             else if (button === 4) key = 2
             else key = button
 
             const context = this.contexts.get(`mouse${key}`)
-            if (context) this.recognizer.move(event, context)
+            if (context) this.recognizer.move(mouseEvent, context)
           }
           button = button << 1
         }
       }
 
-      const mouseup = (event: MouseEvent) => {
-        const context = this.contexts.get(`mouse${1 << event.button}`)
-        if (context) this.recognizer.end(event, context)
-        this.contexts.delete(`mouse${1 << event.button}`)
+      const mouseup = (event: Event) => {
+        const mouseEvent = event as MouseEvent
+        const context = this.contexts.get(`mouse${1 << mouseEvent.button}`)
+        if (context) this.recognizer.end(mouseEvent, context)
+        this.contexts.delete(`mouse${1 << mouseEvent.button}`)
 
-        if (event.buttons === 0) {
-          el.removeEventListener('mousemove', mouseMove)
-          el.removeEventListener('mouseup', mouseup)
+        if (mouseEvent.buttons === 0) {
+          el.removeEventListener('mousemove', mouseMove as EventListener)
+          el.removeEventListener('mouseup', mouseup as EventListener)
           this.isListeningMouse = false
         }
       }
 
       if (!this.isListeningMouse) {
-        el.addEventListener('mousemove', mouseMove)
-        el.addEventListener('mouseup', mouseup)
+        el.addEventListener('mousemove', mouseMove as EventListener)
+        el.addEventListener('mouseup', mouseup as EventListener)
         this.isListeningMouse = true
       }
     })
   }
 
   private setupTouchListeners(): void {
-    this.element.addEventListener('touchstart', (event: TouchEvent) => {
-      for (const touch of event.changedTouches) {
+    this.element.addEventListener('touchstart', (event: Event) => {
+      const touchEvent = event as TouchEvent
+      for (const touch of touchEvent.changedTouches) {
         const context = Object.create(null)
         this.contexts.set(touch.identifier, context)
         this.recognizer.start(touch, context)
       }
     })
 
-    this.element.addEventListener('touchmove', (event: TouchEvent) => {
-      for (const touch of event.changedTouches) {
+    this.element.addEventListener('touchmove', (event: Event) => {
+      const touchEvent = event as TouchEvent
+      for (const touch of touchEvent.changedTouches) {
         const context = this.contexts.get(touch.identifier)
         if (context) {
           event.preventDefault()
@@ -92,8 +97,9 @@ export class Listener {
       }
     })
 
-    this.element.addEventListener('touchend', (event: TouchEvent) => {
-      for (const touch of event.changedTouches) {
+    this.element.addEventListener('touchend', (event: Event) => {
+      const touchEvent = event as TouchEvent
+      for (const touch of touchEvent.changedTouches) {
         const context = this.contexts.get(touch.identifier)
         if (context) {
           this.recognizer.end(touch, context)
@@ -102,8 +108,9 @@ export class Listener {
       }
     })
 
-    this.element.addEventListener('touchcancel', (event: TouchEvent) => {
-      for (const touch of event.changedTouches) {
+    this.element.addEventListener('touchcancel', (event: Event) => {
+      const touchEvent = event as TouchEvent
+      for (const touch of touchEvent.changedTouches) {
         const context = this.contexts.get(touch.identifier)
         if (context) {
           this.recognizer.cancel(touch, context)
@@ -138,7 +145,7 @@ export class Recognizer {
       context.isPress = true
       context.handler = null
       this.dispatcher.dispatch('press', {})
-    }, 500)
+    }, 500) as unknown as number
   }
 
   move(point: MouseEvent | Touch, context: GestureContext): void {
@@ -240,11 +247,15 @@ export class Recognizer {
   }
 }
 
+interface GestureEvent extends Event {
+  [key: string]: any // 允许任意字符串键
+}
+
 export class Dispatcher {
   constructor(private element: Element) {}
 
   dispatch(type: string, properties: Record<string, any>): void {
-    const event = new Event(type)
+    const event = new Event(type) as GestureEvent
     for (const name in properties)
       event[name] = properties[name]
 

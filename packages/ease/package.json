@@ -17,6 +17,7 @@
   "sideEffects": false,
   "main": "index.js",
   "module": "dist/ease.esm-bundler.js",
+  "types": "./dist/ease.d.ts",
   "files": [
     "dist",
     "index.js"
@@ -26,7 +27,8 @@
     "formats": [
       "esm-bundler",
       "cjs",
-      "global"
+      "global",
+      "dts"
     ]
   }
 }

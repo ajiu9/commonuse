@@ -4,7 +4,7 @@
   "description": "comuse metadata",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/metadata.d.ts",
   "scripts": {
     "update": "tsx scripts/update",
     "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild"

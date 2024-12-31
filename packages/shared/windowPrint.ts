@@ -3,7 +3,7 @@
  * @param {string} content - The content to be printed
  * @returns {void}
  */
-export function print(content: string): void {
+export function windowPrint(content: string): void {
   let iframe = document.body.querySelector<HTMLIFrameElement>('#window-print')
   if (!iframe) {
     iframe = document.createElement('iframe')

@@ -16,7 +16,8 @@
   ],
   "sideEffects": false,
   "main": "index.js",
-  "module": "dist/comuse-core.esm-bundler.js",
+  "module": "dist/core.esm-bundler.js",
+  "types": "./dist/core.d.ts",
   "files": [
     "dist",
     "index.js"
@@ -29,7 +30,8 @@
     "formats": [
       "esm-bundler",
       "cjs",
-      "global"
+      "global",
+      "dts"
     ]
   }
 }

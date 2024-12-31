@@ -1,4 +1,4 @@
-export const linear = v => v
+export const linear = (v: any) => v
 
 export function cubicBezier(p1x: number, p1y: number, p2x: number, p2y: number) {
   const ZERO_LIMIT = 1e-6
@@ -66,7 +66,7 @@ export function cubicBezier(p1x: number, p1y: number, p2x: number, p2y: number) 
     }
   }
   function solve(x: number) {
-    return sampleCurveY(solveCurveX(x))
+    return sampleCurveY(solveCurveX(x) as number)
   }
 
   return solve

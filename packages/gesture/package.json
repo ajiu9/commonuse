@@ -16,6 +16,7 @@
   ],
   "sideEffects": false,
   "main": "index.js",
+  "types": "./dist/gesture.d.ts",
   "files": [
     "dist",
     "index.js"
@@ -25,7 +26,8 @@
     "formats": [
       "esm-bundler",
       "cjs",
-      "global"
+      "global",
+      "dts"
     ]
   }
 }
