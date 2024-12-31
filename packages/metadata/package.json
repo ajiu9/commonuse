@@ -1,6 +1,6 @@
 {
   "name": "comuse-metadata",
-  "version": "2.0.2-beta.1",
+  "version": "2.1.0",
   "description": "comuse metadata",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
