@@ -1,5 +1,6 @@
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { defineConfig } from 'vitepress'
+import { categoryNames, metadata } from '../metadata/metadata'
 import viteConfig from './vite.config'
 
 const Guide = [
@@ -8,6 +9,8 @@ const Guide = [
 const DefaultSideBar = [
   { text: 'Guide', items: Guide },
 ]
+
+const FunctionsSideBar = getFunctionsSideBar()
 
 export default defineConfig({
   title: 'Comuse',
@@ -36,6 +39,7 @@ export default defineConfig({
             text: '',
             items: [
               { text: 'All Functions', link: '/functions#' },
+              { text: 'Recent Updated', link: '/functions#sort=updated' },
             ],
           },
           {
@@ -68,6 +72,7 @@ export default defineConfig({
     ],
     sidebar: {
       '/guide/': DefaultSideBar,
+      '/functions': FunctionsSideBar,
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ajiu9/vistara' },
@@ -81,3 +86,27 @@ export default defineConfig({
   ],
   vite: viteConfig,
 })
+
+function getFunctionsSideBar() {
+  const links = []
+
+  for (const name of categoryNames) {
+    if (name.startsWith('_'))
+      continue
+
+    const functions = metadata.functions.filter(i => i.category === name && !i.internal)
+
+    links.push({
+      text: name,
+      items: functions.map(i => ({
+        text: i.name,
+        link: i.external || `/${i.package}/${i.name}/`,
+      })),
+      link: name.startsWith('@')
+        ? (functions[0].external || `/${functions[0].package}/README`)
+        : undefined,
+    })
+  }
+
+  return links
+}

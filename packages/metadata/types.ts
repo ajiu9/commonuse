@@ -1,4 +1,4 @@
-export interface CuseFunction {
+export interface ComuseFunction {
   name: string
   package: string
   importPath?: string
@@ -36,13 +36,13 @@ export interface PackageManifest {
   copy?: string[]
 }
 
-export interface CusePackage extends PackageManifest {
+export interface ComusePackage extends PackageManifest {
   dir: string
   docs?: string
 }
 
 export interface PackageIndexes {
-  packages: Record<string, CusePackage>
+  packages: Record<string, ComusePackage>
   categories: string[]
-  functions: CuseFunction[]
+  functions: ComuseFunction[]
 }

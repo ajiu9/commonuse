@@ -28,6 +28,10 @@ const pkg = require(resolve('package.json'))
 const packageOptions = pkg.buildOptions || {}
 const name = packageOptions.filename || path.basename(packageDir)
 
+const externals = [
+  'vue',
+]
+
 const outputConfigs = {
   'esm-bundler': {
     file: resolve(`dist/${name}.esm-bundler.js`),
@@ -111,7 +115,10 @@ function createConfig(format, output, plugins = []) {
     input,
     // Global and Browser ESM builds inline everything so that they can be
     // used alone.
-    // external: resolveExternal(),
+    external: [
+      resolveExternal(),
+      ...externals,
+    ],
     plugins: [
       json({
         namedExports: false,
@@ -138,14 +145,12 @@ function createConfig(format, output, plugins = []) {
     },
   }
 
-  // function resolveExternal() {
-  //   return [
-  //     ...Object.keys(pkg.dependencies || {}),
-  //     ...Object.keys(pkg.peerDependencies || {}),
-  //     // for comuse
-  //     // ...['path', 'url', 'stream'],
-  //   ]
-  // }
+  function resolveExternal() {
+    return [
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
+    ]
+  }
 }
 
 function createProductionConfig(format) {
@@ -176,4 +181,4 @@ function createProductionConfig(format) {
 // }
 
 export function createRollupConfig(pkg,
-  cwd = process.cwd()) {}
+  _cwd = process.cwd()) {}

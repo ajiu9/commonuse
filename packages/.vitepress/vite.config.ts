@@ -25,7 +25,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ajiu9/animation': resolve(__dirname, '../animation/index.ts'),
-      '@ajiu9/shared': resolve(__dirname, '../shared/src/index.ts'),
+      '@ajiu9/shared': resolve(__dirname, '../shared/index.ts'),
+      '@ajiu9/gesture': resolve(__dirname, '../gesture/index.ts'),
     },
   },
 })

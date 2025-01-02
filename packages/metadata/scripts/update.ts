@@ -1,4 +1,5 @@
-import type { CuseFunction, PackageIndexes } from '..'
+import type { ComuseFunction, PackageIndexes } from 'comuse-metadata'
+
 import { existsSync } from 'node:fs'
 import * as fs from 'node:fs/promises'
 import { join, relative, resolve } from 'node:path'
@@ -6,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 import fg from 'fast-glob'
 import matter from 'gray-matter'
 import Git from 'simple-git'
-import { packages } from '..'
+import { packages } from '../../../meta/packages'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 export const DIR_PACKAGE = resolve(__dirname, '..')
@@ -46,7 +47,7 @@ export async function readMetadata() {
     ],
   }
   for (const info of packages) {
-    const dir = join(DIR_SRC, `${info.name}/src`)
+    const dir = join(DIR_SRC, info.name)
     const functions = await listFunctions(dir)
 
     const pkg = {
@@ -61,7 +62,7 @@ export async function readMetadata() {
       const mdPath = join(dir, fnName, 'index.md')
       const tsPath = join(dir, fnName, 'index.ts')
 
-      const fn: CuseFunction = {
+      const fn: ComuseFunction = {
         name: fnName,
         package: pkg.name,
         lastUpdated: +await git.raw(['log', '-1', '--format=%at', tsPath]) * 1000,
@@ -135,7 +136,7 @@ export async function readMetadata() {
   return indexes
 }
 
-export function getCategories(functions: CuseFunction[]): string[] {
+export function getCategories(functions: ComuseFunction[]): string[] {
   return uniq(
     functions
       .filter(i => !i.internal)

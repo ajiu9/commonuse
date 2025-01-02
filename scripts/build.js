@@ -7,9 +7,7 @@ import process from 'process'
 import { execa, execaSync } from 'execa'
 import minimist from 'minimist'
 
-import { targets as allTargets, targets } from './utils.js'
-
-console.log(targets)
+import { targets as allTargets } from './utils.js'
 
 const require = createRequire(import.meta.url)
 const args = minimist(process.argv.slice(2))
