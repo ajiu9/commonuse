@@ -180,8 +180,7 @@ function createUntil<T>(r: any, isNot = false) {
       return count >= n
     }, options)
   }
-
-  if (isArray(r)) {
+  if (isArray(toValue(r))) {
     const instance: UntilArrayInstance<T> = {
       toMatch: toMatch as any,
       toContains,
