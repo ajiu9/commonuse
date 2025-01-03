@@ -16,17 +16,7 @@ export default defineConfig({
     __VUE_PROD_DEVTOOLS__: 'false',
   },
   test: {
-    environment: 'jsdom',
-    setupFiles: [resolve(__dirname, 'packages/.test/setup.ts')],
     reporters: 'dot',
-    server: {
-      deps: {
-        inline: [
-          'vue',
-          'msw',
-        ],
-      },
-    },
     coverage: {
       exclude: ['./packages/**/demo.vue'],
     },

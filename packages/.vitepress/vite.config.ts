@@ -3,6 +3,7 @@ import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
+import { markdownTransform } from './plugins/markdownTransform'
 
 export default defineConfig({
   server: {
@@ -13,6 +14,10 @@ export default defineConfig({
     },
   },
   plugins: [
+    // custom
+    markdownTransform(),
+
+    // plugins
     Components({
       dirs: resolve(__dirname, 'theme/components'),
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
